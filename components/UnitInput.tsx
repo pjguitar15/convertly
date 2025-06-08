@@ -38,7 +38,7 @@ const UnitInput: React.FC<UnitInputProps> = ({
     const units = categories[category]
     setFromUnit(units[0])
     setToUnit(units[1] || units[0])
-  }, [category])
+  }, [category, categories, setFromUnit, setToUnit])
 
   return (
     <div className='relative w-full'>

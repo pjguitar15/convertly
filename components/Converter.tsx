@@ -33,7 +33,7 @@ export default function Converter() {
 
     const test = convert('mass', 'meters', 'miles', 1)
     console.log('TESTTT', test)
-  }, [inputA, inputB, fromUnit, toUnit, category])
+  }, [inputA, setInputB, inputB, fromUnit, toUnit, category])
 
   return (
     <div className='lg:min-w-[700px] flex flex-col gap-4'>
