@@ -2,7 +2,8 @@ import CenterItems from '@/components/CenterItems'
 import StillInProgress from '@/components/StillInProgress'
 import React from 'react'
 
-const page = () => {
+export default async function page() {
+  await new Promise((resolve) => setTimeout(resolve, 500)) // Simulate a delay
   return (
     <CenterItems>
       <StillInProgress
@@ -15,5 +16,3 @@ const page = () => {
     </CenterItems>
   )
 }
-
-export default page

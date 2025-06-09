@@ -8,6 +8,10 @@ export const navbarLinks = [
     path: '/convert/currency',
   },
   {
+    name: 'Conversion Formulas',
+    path: '/conversion-formulas',
+  },
+  {
     name: 'Live Exchange Rates',
     path: '/live-exchange-rates',
   },

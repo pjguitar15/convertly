@@ -20,6 +20,7 @@ export async function generateMetadata({ params }: Props) {
 }
 
 export default async function Page({ params }: Props) {
+  await new Promise((resolve) => setTimeout(resolve, 500)) // Simulate a delay
   const { category } = await params
   const isValid = Object.keys(categories).includes(category)
 

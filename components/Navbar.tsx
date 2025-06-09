@@ -1,25 +1,73 @@
+'use client'
+
 import { navbarLinks } from '@/constants/navbarLinks'
 import Link from 'next/link'
-import React from 'react'
+import React, { useState } from 'react'
 import Logo from './Logo'
+import { usePathname } from 'next/navigation'
+import { HiMenuAlt4 } from 'react-icons/hi'
 
 const Navbar = () => {
+  const pathname = usePathname()
+  const [menuOpen, setMenuOpen] = useState(false)
+
+  const toggleMenu = () => setMenuOpen((prev) => !prev)
+
   return (
-    <div className='fixed top-0 left-0 w-full z-50'>
-      <div className='container mx-auto flex items-center py-6 gap-9'>
+    <div className='fixed top-0 left-0 w-full z-50 bg-gray-900'>
+      <div className='container mx-auto flex items-center justify-between py-6 px-4 md:px-0'>
         <Logo href='/' />
-        <div>
-          {navbarLinks.map((link) => (
-            <Link
-              key={link.name}
-              href={link.path}
-              className='text-white bg-gray-800 px-4 py-2 rounded-lg hover:bg-gray-700 transition-colors duration-200'
-            >
-              {link.name}
-            </Link>
-          ))}
+
+        {/* Desktop Links */}
+        <div className='hidden lg:flex gap-4 overflow-x-auto whitespace-nowrap max-w-full'>
+          {navbarLinks.map((link) => {
+            const isActive = pathname === link.path
+            return (
+              <Link
+                key={link.name}
+                href={link.path}
+                className={`text-white px-4 py-2 rounded-lg transition-colors duration-200 ${
+                  isActive ? 'bg-gray-700' : 'bg-gray-800 hover:bg-gray-700'
+                }`}
+              >
+                {link.name}
+              </Link>
+            )
+          })}
+        </div>
+
+        {/* Mobile Burger */}
+        <div className='lg:hidden'>
+          <button
+            className='cursor-pointer'
+            onClick={toggleMenu}
+            aria-label='Toggle Menu'
+          >
+            <HiMenuAlt4 className='text-white text-3xl' />
+          </button>
         </div>
       </div>
+
+      {/* Mobile Menu */}
+      {menuOpen && (
+        <div className='lg:hidden bg-gray-800 px-4 pb-4'>
+          {navbarLinks.map((link) => {
+            const isActive = pathname === link.path
+            return (
+              <Link
+                key={link.name}
+                href={link.path}
+                onClick={() => setMenuOpen(false)}
+                className={`block text-white w-full text-left px-4 py-2 rounded-lg transition-colors duration-200 ${
+                  isActive ? 'bg-gray-700' : 'hover:bg-gray-700'
+                }`}
+              >
+                {link.name}
+              </Link>
+            )
+          })}
+        </div>
+      )}
     </div>
   )
 }

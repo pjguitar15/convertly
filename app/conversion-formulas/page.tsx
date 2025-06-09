@@ -7,11 +7,11 @@ export default async function page() {
   return (
     <CenterItems>
       <StillInProgress
-        icon={<span className='text-yellow-500'>🚧</span>}
-        title='Live Exchange Rate Page'
-        description='We’re currently building this feature to provide accurate and real-time currency conversions. Stay tuned — it’s coming soon!'
+        icon={'🚧'}
+        title='Conversion Formula Coming Soon'
+        description='Soon you’ll be able to learn how to convert units with conversion formula.'
         buttonText='Convert Units Instead'
-        navigateTo='/'
+        navigateTo='/convert/length'
       />
     </CenterItems>
   )
