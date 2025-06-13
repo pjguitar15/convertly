@@ -1,1 +1,43 @@
 @import 'tailwindcss';
+@font-face {
+  font-family: 'HelveticaNow Display';
+  src: url('/fonts/helvetica-now/HelveticaNowMTDisp.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'HelveticaNow Micro';
+  src: url('/fonts/helvetica-now/HelveticaNowMTMicro.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'HelveticaNow Text';
+  src: url('/fonts/helvetica-now/HelveticaNowMTText.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+::selection {
+  background-color: black;
+  color: white; /* Optional: makes selected text visible */
+}
+
+/* global.css or tailwind's base layer */
+.thin-scrollbar::-webkit-scrollbar {
+  height: 6px;
+}
+
+.thin-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.thin-scrollbar::-webkit-scrollbar-thumb {
+  background-color: #d6d3d1; /* Tailwind's stone-300 */
+  border-radius: 9999px;
+}

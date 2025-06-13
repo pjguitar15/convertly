@@ -47,13 +47,13 @@ const UnitInput: React.FC<UnitInputProps> = ({
         value={inputValue}
         onChange={handleInputChange}
         placeholder='Enter value'
-        className='w-full bg-white px-4 pr-32 py-3 rounded-lg shadow'
+        className='w-full bg-stone-200 text-stone-900 px-4 pr-32 py-3 rounded-lg shadow placeholder-stone-400 font-normal outline-0'
         {...inputProps}
       />
       <select
         value={selectValue}
         onChange={onSelectChange}
-        className={`absolute right-2 top-1/2 -translate-y-1/2 px-3 pr-6 py-2 bg-gray-200 text-sm text-gray-800 rounded shadow outline-0 cursor-pointer capitalize appearance-none ${className}`}
+        className={`absolute right-2 top-1/2 -translate-y-1/2 px-3 pr-6 py-2 bg-stone-300 text-sm text-stone-900 rounded shadow outline-0 cursor-pointer capitalize appearance-none ${className}`}
         {...selectProps}
       >
         {categories[category].map((u) => (

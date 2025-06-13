@@ -30,9 +30,6 @@ export default function Converter() {
       console.log('Invalid inputA value:', inputA)
       setInputB('')
     }
-
-    const test = convert('mass', 'meters', 'miles', 1)
-    console.log('TESTTT', test)
   }, [inputA, setInputB, inputB, fromUnit, toUnit, category])
 
   return (
@@ -58,6 +55,20 @@ export default function Converter() {
           selectValue={toUnit}
           onSelectChange={(e) => setToUnit(e.target.value)}
         />
+      </div>
+      <div className='hidden lg:block bg-stone-200 w-full p-6 rounded text-sm text-stone-700'>
+        <h3 className='font-semibold text-stone-800 mb-2'>Conversion Info</h3>
+        <hr className='border-stone-300 my-4' />
+        <p>
+          <strong>From:</strong> {fromUnit}
+        </p>
+        <p>
+          <strong>To:</strong> {toUnit}
+        </p>
+        <p>
+          <strong>Example:</strong> 1 {fromUnit} ={' '}
+          {convert(category, fromUnit, toUnit, 1)} {toUnit}
+        </p>
       </div>
     </div>
   )

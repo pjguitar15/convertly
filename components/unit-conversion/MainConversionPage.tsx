@@ -1,15 +1,15 @@
 'use client'
 
-import Converter from '@/components/Converter'
-import CategorySidebar from '@/components/CategorySidebar'
-import CategoryTopBar from '@/components/CategoryTopBar'
+import Converter from '@/components/unit-conversion/Converter'
+import CategorySidebar from '@/components/unit-conversion/CategorySidebar'
+import CategoryTopBar from '@/components/unit-conversion/CategoryTopBar'
 import { useUnits } from '@/context/UnitContext'
-import CategoryTitle from '@/components/CategoryTitle'
+import CategoryTitle from '@/components/unit-conversion/CategoryTitle'
 
 export default function Home() {
   const { category } = useUnits()
   return (
-    <div className='p-12 bg-[#e9e7e7] rounded-xl'>
+    <div className='p-12 bg-white rounded-xl border border-stone-200 shadow mx-auto max-w-[1200px]'>
       <CategoryTitle category={category} />
 
       <div className='block lg:hidden mb-4'>

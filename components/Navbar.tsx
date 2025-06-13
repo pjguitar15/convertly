@@ -14,7 +14,7 @@ const Navbar = () => {
   const toggleMenu = () => setMenuOpen((prev) => !prev)
 
   return (
-    <div className='fixed top-0 left-0 w-full z-50 bg-gray-900'>
+    <div className='fixed top-0 left-0 w-full z-50 bg-stone-200'>
       <div className='container mx-auto flex items-center justify-between py-6 px-4 md:px-0'>
         <Logo href='/' />
 
@@ -26,8 +26,8 @@ const Navbar = () => {
               <Link
                 key={link.name}
                 href={link.path}
-                className={`text-white px-4 py-2 rounded-lg transition-colors duration-200 ${
-                  isActive ? 'bg-gray-700' : 'bg-gray-800 hover:bg-gray-700'
+                className={`text-stone-950 px-4 py-2 rounded-lg transition-colors duration-200 ${
+                  isActive && 'bg-stone-300'
                 }`}
               >
                 {link.name}
@@ -43,14 +43,14 @@ const Navbar = () => {
             onClick={toggleMenu}
             aria-label='Toggle Menu'
           >
-            <HiMenuAlt4 className='text-white text-3xl' />
+            <HiMenuAlt4 className='text-stone-950 text-3xl' />
           </button>
         </div>
       </div>
 
       {/* Mobile Menu */}
       {menuOpen && (
-        <div className='lg:hidden bg-gray-800 px-4 pb-4'>
+        <div className='lg:hidden bg-white pb-4'>
           {navbarLinks.map((link) => {
             const isActive = pathname === link.path
             return (
@@ -58,8 +58,8 @@ const Navbar = () => {
                 key={link.name}
                 href={link.path}
                 onClick={() => setMenuOpen(false)}
-                className={`block text-white w-full text-left px-4 py-2 rounded-lg transition-colors duration-200 ${
-                  isActive ? 'bg-gray-700' : 'hover:bg-gray-700'
+                className={`block text-stone-900 w-full text-left px-7 py-4 transition-colors duration-200 ${
+                  isActive ? 'bg-stone-300' : 'hover:bg-stone-300'
                 }`}
               >
                 {link.name}
