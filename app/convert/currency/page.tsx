@@ -1,3 +1,4 @@
+import AdBanner from '@/components/AdBanner'
 import CenterItems from '@/components/CenterItems'
 import MainCurrencyPage from '@/components/MainCurrencyPage'
 import PageInfo from '@/components/PageInfo'
@@ -67,7 +68,6 @@ export async function generateMetadata() {
   }
 }
 
-
 export default async function page() {
   await new Promise((resolve) => setTimeout(resolve, 500)) // Simulate a delay
   return (
@@ -75,6 +75,11 @@ export default async function page() {
       <CenterItems className='flex flex-col'>
         <MainCurrencyPage />
       </CenterItems>
+      <div className='bg-white py-12'>
+        <div className='container mx-auto'>
+          <AdBanner />
+        </div>
+      </div>
       <PageInfo
         title={currencyPageInfo.title}
         bullets={currencyPageInfo.bullets}

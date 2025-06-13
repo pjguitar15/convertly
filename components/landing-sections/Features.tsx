@@ -9,9 +9,7 @@ import {
   AiOutlineSafetyCertificate,
 } from 'react-icons/ai'
 import { FaRegMap } from 'react-icons/fa'
-import {
-  MdOutlineDashboardCustomize,
-} from 'react-icons/md'
+import { MdOutlineDashboardCustomize } from 'react-icons/md'
 
 const Features = () => {
   return (
@@ -49,33 +47,34 @@ const Features = () => {
           <div className='shadow-md p-6 rounded-lg bg-stone-900 flex flex-col items-center text-center py-12'>
             <AiOutlineSafetyCertificate className='text-stone-100 w-8 h-8 mb-4' />
             <h3 className='text-xl font-semibold mb-2 text-stone-100'>
-              Comprehensive Coverage
+              Accurate & Verified
             </h3>
             <p className='text-stone-400 text-sm'>
-              Covers all major unit types—length, weight, temperature, volume,
-              area, time, and more.
+              All conversion formulas and rates are based on verified standards
+              and real-time data — so you can convert with confidence.
             </p>
           </div>
 
           <div className='shadow-md p-6 rounded-lg bg-stone-900 flex flex-col items-center text-center py-12'>
             <FaRegMap className='text-stone-100 w-8 h-8 mb-4' />
             <h3 className='text-xl font-semibold mb-2 text-stone-100'>
-              SEO Optimized Pages
+              Formula Discovery
             </h3>
             <p className='text-stone-400 text-sm'>
-              Every formula and topic has its own SEO-friendly URL so it’s easy
-              to share and find.
+              Search and explore hundreds of unit formulas in one place. It is
+              your built-in cheat sheet for quick learning or reference.
             </p>
           </div>
 
           <div className='shadow-md p-6 rounded-lg bg-stone-900 flex flex-col items-center text-center py-12'>
             <MdOutlineDashboardCustomize className='text-stone-100 w-8 h-8 mb-4' />
             <h3 className='text-xl font-semibold mb-2 text-stone-100'>
-              Clean UI/UX
+              Custom UI for Conversion
             </h3>
             <p className='text-stone-400 text-sm'>
-              Modern, intuitive, and responsive interface designed for all
-              screen sizes.
+              Built from the ground up to prioritize fast input, clear results,
+              and zero distractions. Just convert — no clutter, no ads in your
+              face.
             </p>
           </div>
         </div>

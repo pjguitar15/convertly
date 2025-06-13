@@ -3,6 +3,7 @@
 import { conversionFormulas } from '@/constants/formulas'
 import { useState, useMemo } from 'react'
 import { AiOutlineSearch } from 'react-icons/ai'
+import AdBanner from '../AdBanner'
 
 export default function ConversionFormulasPage() {
   const [query, setQuery] = useState('')
@@ -61,48 +62,57 @@ export default function ConversionFormulasPage() {
         </div>
       )}
 
-      <div className='space-y-6'>
-        {filteredFormulas.map((formula) => (
-          <div
-            key={formula.id}
-            className='flex flex-col gap-6 p-8 bg-stone-100 rounded shadow'
-          >
-            {/* Left (Formula Info) */}
-            <div className='lg:w-auto'>
-              <h3 className='text-lg font-semibold text-stone-800 mb-3 capitalize'>
-                {formula.title}
-              </h3>
-              <p className='text-stone-600'>
-                Formula:{' '}
-                <span className='bg-stone-900 text-stone-100 px-3 py-2 rounded text-sm font-semibold'>
-                  {formula.formula}
-                </span>
-              </p>
-            </div>
-
-            <hr className='border-stone-300' />
-
-            {/* Right (Example + Note) */}
-            <div className='lg:w-auto text-sm space-y-2 text-stone-600 mt-6 lg:mt-0'>
-              {formula.example && (
-                <p>
-                  <span className='font-semibold text-stone-700'>Example:</span>{' '}
-                  {formula.example}
+      <div className='flex flex-col lg:flex-row gap-8'>
+        <div className='flex flex-col gap-4 flex-grow lg:w-4/5'>
+          {filteredFormulas.map((formula) => (
+            <div
+              key={formula.id}
+              className='flex flex-col gap-6 p-8 bg-stone-100 rounded shadow'
+            >
+              {/* Left (Formula Info) */}
+              <div className='lg:w-auto'>
+                <h3 className='text-lg font-semibold text-stone-800 mb-3 capitalize'>
+                  {formula.title}
+                </h3>
+                <p className='text-stone-600'>
+                  Formula:{' '}
+                  <span className='bg-stone-900 text-stone-100 px-3 py-2 rounded text-sm font-semibold'>
+                    {formula.formula}
+                  </span>
                 </p>
-              )}
-              {formula.note && (
-                <p>
-                  <span className='font-semibold text-stone-700'>Note:</span>{' '}
-                  {formula.note}
-                </p>
-              )}
-            </div>
-          </div>
-        ))}
+              </div>
 
-        {filteredFormulas.length === 0 && !showSuggestions && (
-          <p className='text-stone-500'>No matching conversion found.</p>
-        )}
+              <hr className='border-stone-300' />
+
+              {/* Right (Example + Note) */}
+              <div className='lg:w-auto text-sm space-y-2 text-stone-600 mt-6 lg:mt-0'>
+                {formula.example && (
+                  <p>
+                    <span className='font-semibold text-stone-700'>
+                      Example:
+                    </span>{' '}
+                    {formula.example}
+                  </p>
+                )}
+                {formula.note && (
+                  <p>
+                    <span className='font-semibold text-stone-700'>Note:</span>{' '}
+                    {formula.note}
+                  </p>
+                )}
+              </div>
+            </div>
+          ))}
+
+          {filteredFormulas.length === 0 && !showSuggestions && (
+            <p className='text-stone-500'>No matching conversion found.</p>
+          )}
+        </div>
+        <div className='lg:w-1/5 flex flex-col gap-5 bg-white p-4'>
+          <AdBanner />
+          <AdBanner />
+          <AdBanner />
+        </div>
       </div>
     </main>
   )

@@ -14,7 +14,7 @@ type PageInfoProps = {
 
 const PageInfo = ({ title, bullets }: PageInfoProps) => {
   return (
-    <div className='w-full mt-12 bg-white py-12'>
+    <div className='w-full bg-white py-12'>
       <div className='container mx-auto'>
         <h3 className='text-lg font-semibold text-stone-800 mb-4'>{title}</h3>
         <ul className='list-disc list-inside text-stone-600 text-sm space-y-3'>

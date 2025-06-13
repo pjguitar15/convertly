@@ -3,6 +3,7 @@ import CenterItems from '@/components/CenterItems'
 import MainConversionPage from '@/components/unit-conversion/MainConversionPage'
 import PageError from '@/components/PageError'
 import PageInfo from '@/components/PageInfo'
+import AdBanner from '@/components/AdBanner'
 
 type Props = {
   params: Promise<{ category: string }>
@@ -85,6 +86,11 @@ export default async function Page({ params }: Props) {
       <CenterItems className='flex flex-col justify-center items-center'>
         {isValid ? <MainConversionPage /> : <PageError category={category} />}
       </CenterItems>
+      <div className='bg-white py-12'>
+        <div className='container mx-auto'>
+          <AdBanner />
+        </div>
+      </div>
       <PageInfo
         title={categoryPageInfo.title}
         bullets={categoryPageInfo.bullets}

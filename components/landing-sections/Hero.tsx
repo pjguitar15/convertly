@@ -16,8 +16,8 @@ const Hero = () => {
           </h1>
           <p className='text-lg text-stone-500 max-w-xl'>
             Your all-in-one tool for converting units—whether it is length,
-            mass, temperature, or even currency (coming soon!). Precision meets
-            simplicity with our lightning-fast converter.
+            mass, temperature, or even currency. Precision meets simplicity with
+            our lightning-fast converter.
           </p>
 
           <div className='mt-8 flex flex-col sm:flex-row gap-4'>

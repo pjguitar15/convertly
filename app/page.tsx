@@ -1,3 +1,4 @@
+import AdBanner from '@/components/AdBanner'
 import Features from '@/components/landing-sections/Features'
 import Hero from '@/components/landing-sections/Hero'
 
@@ -40,6 +41,7 @@ export default async function Home() {
       <main className='container mx-auto'>
         <Hero />
         <Features />
+        <AdBanner />
       </main>
     </>
   )
