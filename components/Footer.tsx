@@ -81,7 +81,7 @@ export default function Footer() {
       {/* Bottom Bar */}
       <div className='border-t border-stone-300 py-4 text-center text-xs text-stone-500'>
         &copy; {new Date().getFullYear()} Convert Like A Pro. All rights
-        reserved. | Developed by Philcob
+        reserved. | Developed by Philcob.
       </div>
     </footer>
   )

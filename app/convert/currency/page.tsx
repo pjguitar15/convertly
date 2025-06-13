@@ -1,7 +1,6 @@
 import CenterItems from '@/components/CenterItems'
 import MainCurrencyPage from '@/components/MainCurrencyPage'
 import PageInfo from '@/components/PageInfo'
-import Head from 'next/head'
 import React from 'react'
 
 const currencyPageInfo = {
@@ -37,17 +36,42 @@ const currencyPageInfo = {
   ],
 }
 
+export async function generateMetadata() {
+  return {
+    title: 'Currency Converter – Convert Money Instantly | Convert Like A Pro',
+    description:
+      'Use our free currency converter to convert money between 150+ currencies in real-time. Get the latest exchange rates and convert USD, EUR, GBP, PHP, and more instantly.',
+    keywords: [
+      'currency converter',
+      'money conversion tool',
+      'convert USD to EUR',
+      'live exchange rates',
+      'currency exchange calculator',
+      'convert money online',
+      'foreign exchange tool',
+    ],
+    openGraph: {
+      title: 'Currency Converter – Convert Money Instantly',
+      description:
+        'Fast and accurate currency conversions for over 150 currencies. Get real-time exchange rates and convert now.',
+      url: 'https://convertlikeapro.com/convert-currency',
+      siteName: 'Convert Like A Pro',
+      type: 'website',
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: 'Free Currency Converter | Convert Like A Pro',
+      description:
+        'Convert any currency in seconds using live exchange rates. Free and easy to use.',
+    },
+  }
+}
+
+
 export default async function page() {
   await new Promise((resolve) => setTimeout(resolve, 500)) // Simulate a delay
   return (
     <>
-      <Head>
-        <title>Currency Converter | Convert Like A Pro</title>
-        <meta
-          name='description'
-          content='Get real-time exchange rates and convert any currency globally with Convert Like A Pro.'
-        />
-      </Head>
       <CenterItems className='flex flex-col'>
         <MainCurrencyPage />
       </CenterItems>

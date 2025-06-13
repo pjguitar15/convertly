@@ -3,7 +3,6 @@ import CenterItems from '@/components/CenterItems'
 import MainConversionPage from '@/components/unit-conversion/MainConversionPage'
 import PageError from '@/components/PageError'
 import PageInfo from '@/components/PageInfo'
-import Head from 'next/head'
 
 type Props = {
   params: Promise<{ category: string }>
@@ -48,8 +47,32 @@ export async function generateStaticParams() {
 
 export async function generateMetadata({ params }: Props) {
   const { category } = await params
+  const capitalizedCategory =
+    category.charAt(0).toUpperCase() + category.slice(1)
+
   return {
-    title: `Convert ${category} | Convertly`,
+    title: `${capitalizedCategory} Unit Converter – Convert ${category} instantly`,
+    description: `Convert ${category} units quickly and accurately. Use our free ${category} converter to get real-time results for all your ${category} conversion needs.`,
+    keywords: [
+      `${category} converter`,
+      `convert ${category} units`,
+      `${category} unit conversion`,
+      `online ${category} calculator`,
+      `${category} to imperial`,
+      `${category} to metric`,
+    ],
+    openGraph: {
+      title: `${capitalizedCategory} Unit Converter – Convert ${category} instantly`,
+      description: `Free ${category} converter for fast and reliable unit conversions. Try it now.`,
+      url: `https://convertlikeapro.com/convert/${category}`,
+      siteName: 'Convert Like A Pro',
+      type: 'website',
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: `${capitalizedCategory} Unit Converter – Fast & Free`,
+      description: `Easily convert ${category} units online. Accurate and instant.`,
+    },
   }
 }
 
@@ -59,13 +82,6 @@ export default async function Page({ params }: Props) {
 
   return (
     <>
-      <Head>
-        <title>Convert Units | Convert Like A Pro</title>
-        <meta
-          name='description'
-          content="Convert length, weight, temperature, area, and more in seconds with Convert Like A Pro's unit converter."
-        />
-      </Head>
       <CenterItems className='flex flex-col justify-center items-center'>
         {isValid ? <MainConversionPage /> : <PageError category={category} />}
       </CenterItems>

@@ -1,7 +1,6 @@
 import CenterItems from '@/components/CenterItems'
 import MainConversionFormulasPage from '@/components/conversion-formulas/MainConversionFormulasPage'
 import PageInfo from '@/components/PageInfo'
-import Head from 'next/head'
 import React from 'react'
 
 const conversionFormulasPageInfo = {
@@ -37,17 +36,42 @@ const conversionFormulasPageInfo = {
   ],
 }
 
+export async function generateMetadata() {
+  return {
+    title:
+      'Conversion Formulas – Length, Weight, Temperature & More | Convert Like A Pro',
+    description:
+      'Explore clear and accurate unit conversion formulas for length, weight, temperature, volume, and more. Perfect for students, engineers, and everyday use.',
+    keywords: [
+      'conversion formulas',
+      'unit conversion formulas',
+      'length formula',
+      'weight conversion formula',
+      'temperature conversion equation',
+      'metric to imperial formulas',
+      'how to convert units',
+    ],
+    openGraph: {
+      title: 'Conversion Formulas – Understand How Units Convert',
+      description:
+        'Learn the math behind common unit conversions. Browse formulas for length, weight, temperature, and more.',
+      url: 'https://convertlikeapro.com/conversion-formulas',
+      siteName: 'Convert Like A Pro',
+      type: 'website',
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: 'Conversion Formulas for Every Unit | Convert Like A Pro',
+      description:
+        'Master unit conversions with our easy-to-understand formulas. Great for learning, teaching, and solving real-world problems.',
+    },
+  }
+}
+
 export default async function page() {
   await new Promise((resolve) => setTimeout(resolve, 500)) // Simulate a delay
   return (
     <>
-      <Head>
-        <title>Conversion Formulas | Convert Like A Pro</title>
-        <meta
-          name='description'
-          content='Browse conversion formulas for length, mass, temperature, volume, and more.'
-        />
-      </Head>
       <CenterItems>
         <MainConversionFormulasPage />
       </CenterItems>
