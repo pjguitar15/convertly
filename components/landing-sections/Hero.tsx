@@ -40,7 +40,7 @@ const Hero = () => {
               Upcoming
             </p>
             <div className='inline-flex items-center gap-2 bg-stone-200 text-stone-600 px-4 py-2 rounded-full text-sm font-medium'>
-              💱 Currency Converter — Coming Soon
+              💱 Live Exchange Rates — Coming Soon
             </div>
           </div>
         </div>
