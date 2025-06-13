@@ -3,6 +3,7 @@ import { useEffect } from 'react'
 import { useUnits } from '@/context/UnitContext'
 import { convert } from '@/lib/conversion'
 import UnitInput from './UnitInput'
+import Link from 'next/link'
 
 export default function Converter() {
   const {
@@ -33,8 +34,9 @@ export default function Converter() {
   }, [inputA, setInputB, inputB, fromUnit, toUnit, category])
 
   return (
-    <div className='lg:min-w-[700px] flex flex-col gap-4'>
-      <div className='flex flex-col gap-4 mb-4'>
+    <div className='lg:min-w-[700px] flex flex-col min-h-full'>
+      {/* Top (input) section with flexible growth */}
+      <div className='flex flex-col gap-4 mb-4 flex-grow'>
         <UnitInput
           inputValue={inputA}
           onInputChange={(e) => setInputA(e.target.value)}
@@ -55,21 +57,18 @@ export default function Converter() {
           selectValue={toUnit}
           onSelectChange={(e) => setToUnit(e.target.value)}
         />
-      </div>
-      <div className='hidden lg:block bg-stone-200 w-full p-6 rounded text-sm text-stone-700'>
-        <h3 className='font-semibold text-stone-800 mb-2'>Conversion Info</h3>
-        <hr className='border-stone-300 my-4' />
-        <p>
-          <strong>From:</strong> {fromUnit}
-        </p>
-        <p>
-          <strong>To:</strong> {toUnit}
-        </p>
-        <p>
-          <strong>Example:</strong> 1 {fromUnit} ={' '}
+        <p className='w-full p-3 rounded text-sm text-stone-400'>
+          <strong>Conversion:</strong> 1 {fromUnit} ={' '}
           {convert(category, fromUnit, toUnit, 1)} {toUnit}
         </p>
       </div>
+
+      <Link
+        href='/conversion-formulas'
+        className='text-stone-400 hover:underline mt-2 block underline w-full p-3 rounded text-sm'
+      >
+        Want to learn more about how this conversion works? View formulas →
+      </Link>
     </div>
   )
 }

@@ -36,8 +36,8 @@ export function UnitProvider({ children }: { children: ReactNode }) {
   const [category, setCategory] = useState<Category>(initialCategory)
   const [fromUnit, setFromUnit] = useState(categories[initialCategory][0])
   const [toUnit, setToUnit] = useState(categories[initialCategory][1])
-  const [inputA, setInputA] = useState('')
-  const [inputB, setInputB] = useState('')
+  const [inputA, setInputA] = useState('10')
+  const [inputB, setInputB] = useState('5')
 
   // Update units whenever the path changes
   useEffect(() => {
