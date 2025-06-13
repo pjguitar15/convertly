@@ -108,7 +108,7 @@ export default function ConversionFormulasPage() {
             <p className='text-stone-500'>No matching conversion found.</p>
           )}
         </div>
-        <div className='lg:w-1/5 flex flex-col gap-5 bg-white p-4'>
+        <div className='lg:w-1/5 flex flex-col gap-5 bg-white p-4 self-start sticky top-0'>
           <AdBanner />
           <AdBanner />
           <AdBanner />
