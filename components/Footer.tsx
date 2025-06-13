@@ -47,15 +47,30 @@ export default function Footer() {
           </p>
           <p className='mt-2'>Follow me on social media</p>
           <div className='flex gap-4 mt-2'>
-            <Link href='#' className='flex items-center gap-1 hover:underline'>
+            <Link
+              href='https://www.youtube.com/@philcobjosol'
+              className='flex items-center gap-1 hover:underline'
+              target='_blank'
+              rel='noopener noreferrer'
+            >
               <FaYoutube className='text-lg' />
               <span>Youtube</span>
             </Link>
-            <Link href='#' className='flex items-center gap-1 hover:underline'>
+            <Link
+              href='https://github.com/pjguitar15'
+              className='flex items-center gap-1 hover:underline'
+              target='_blank'
+              rel='noopener noreferrer'
+            >
               <FaGithub className='text-lg' />
               <span>GitHub</span>
             </Link>
-            <Link href='#' className='flex items-center gap-1 hover:underline'>
+            <Link
+              href='https://www.linkedin.com/in/philcob-suzuki-josol-446241300/'
+              className='flex items-center gap-1 hover:underline'
+              target='_blank'
+              rel='noopener noreferrer'
+            >
               <FaLinkedin className='text-lg' />
               <span>LinkedIn</span>
             </Link>
@@ -65,7 +80,8 @@ export default function Footer() {
 
       {/* Bottom Bar */}
       <div className='border-t border-stone-300 py-4 text-center text-xs text-stone-500'>
-        &copy; {new Date().getFullYear()} ConvertPro. All rights reserved.
+        &copy; {new Date().getFullYear()} Convert Like A Pro. All rights
+        reserved. | Developed by Philcob
       </div>
     </footer>
   )
