@@ -1,6 +1,6 @@
 import { MongoClient } from 'mongodb'
 
-const uri = process.env.MONGO_DB_STRING!
+const uri = process.env.NEXT_PUBLIC_MONGO_DB_STRING!
 if (!uri)
   throw new Error('Please define MONGO_DB_STRING in your environment variables')
 
@@ -10,7 +10,7 @@ const globalWithMongo = globalThis as typeof globalThis & {
 
 let client: MongoClient
 
-if (process.env.NODE_ENV === 'production') {
+if (process.env.NEXT_PUBLIC_NODE_ENV === 'production') {
   // ✅ In production, always create a new client — serverless best practice
   client = new MongoClient(uri)
 } else {

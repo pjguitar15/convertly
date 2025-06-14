@@ -39,18 +39,11 @@ export async function generateMetadata() {
 
 export default async function Home() {
   await new Promise((resolve) => setTimeout(resolve, 500)) // Simulate a delay
-  const envs = {
-    ADSENSE_PID: process.env.ADSENSE_PID,
-    MONGO_DB_STRING: process.env.MONGO_DB_STRING,
-    MONGO_DB_NAME: process.env.MONGO_DB_NAME,
-    NODE_ENV: process.env.NODE_ENV,
-    ADMIN_USER: process.env.ADMIN_USER,
-    ADMIN_PASS: process.env.ADMIN_PASS,
-  }
+  
 
   return (
     <main className='container mx-auto px-4 md:px-0'>
-      <Hero envs={envs} />
+      <Hero />
       <Features />
       <HowItWorks />
       <Testimonials />

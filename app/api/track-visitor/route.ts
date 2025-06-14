@@ -13,7 +13,7 @@ export async function POST(req: Request) {
     const userAgent = req.headers.get('user-agent') || ''
 
     const client = await clientPromise
-    const db = client.db(process.env.MONGO_DB_NAME)
+    const db = client.db(process.env.NEXT_PUBLIC_MONGO_DB_NAME)
 
     await db.collection('visitors').updateOne(
       { visitorId },

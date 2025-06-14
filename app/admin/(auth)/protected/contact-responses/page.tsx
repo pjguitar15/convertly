@@ -8,7 +8,7 @@ export default async function ContactResponsesPage() {
 
   try {
     const client = await clientPromise
-    const db = client.db(process.env.MONGO_DB_NAME)
+    const db = client.db(process.env.NEXT_PUBLIC_MONGO_DB_NAME)
 
     const raw = await db.collection('contact-responses').find().toArray()
 
