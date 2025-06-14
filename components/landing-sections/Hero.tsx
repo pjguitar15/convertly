@@ -1,12 +1,24 @@
 'use client'
 
 import Image from 'next/image'
-import React from 'react'
+import React, { useEffect } from 'react'
 import HeaderImage from '@/public/header.png'
 import Link from 'next/link'
 import { AiOutlineArrowRight } from 'react-icons/ai'
 
-const Hero = () => {
+type EnvVars = {
+  ADSENSE_PID?: string
+  MONGO_DB_STRING?: string
+  MONGO_DB_NAME?: string
+  NODE_ENV?: string
+  ADMIN_USER?: string
+  ADMIN_PASS?: string
+}
+
+const Hero = ({ envs }: { envs: EnvVars }) => {
+  useEffect(() => {
+    console.log('Check all ENVs', envs)
+  }, [envs])
   return (
     <section className='relative text-stone-950 overflow-hidden w-full container mx-auto flex py-36'>
       <div className='relative z-10 mx-auto grid grid-cols-1 lg:grid-cols-2 items-center'>

@@ -4,23 +4,21 @@ const uri = process.env.MONGO_DB_STRING!
 if (!uri)
   throw new Error('Please define MONGO_DB_STRING in your environment variables')
 
-declare global {
-  // eslint-disable-next-line no-var
-  var _mongoClientPromise: Promise<MongoClient> | undefined
+const globalWithMongo = globalThis as typeof globalThis & {
+  _mongoClient?: MongoClient
 }
 
 let client: MongoClient
-let clientPromise: Promise<MongoClient>
 
-if (process.env.NODE_ENV === 'development') {
-  if (!global._mongoClientPromise) {
-    client = new MongoClient(uri)
-    global._mongoClientPromise = client.connect()
-  }
-  clientPromise = global._mongoClientPromise
-} else {
+if (process.env.NODE_ENV === 'production') {
+  // ✅ In production, always create a new client — serverless best practice
   client = new MongoClient(uri)
-  clientPromise = client.connect()
+} else {
+  // ✅ In dev, use globalThis to reuse the client across hot reloads
+  if (!globalWithMongo._mongoClient) {
+    globalWithMongo._mongoClient = new MongoClient(uri)
+  }
+  client = globalWithMongo._mongoClient
 }
 
-export default clientPromise
+export default client
