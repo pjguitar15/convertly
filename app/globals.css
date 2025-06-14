@@ -15,6 +15,10 @@
   font-display: swap;
 }
 
+body {
+  font-family: 'HelveticaNow Text', sans-serif;
+}
+
 @font-face {
   font-family: 'HelveticaNow Text';
   src: url('/fonts/helvetica-now/HelveticaNowMTText.ttf') format('truetype');
@@ -30,7 +34,7 @@
 
 /* global.css or tailwind's base layer */
 .thin-scrollbar::-webkit-scrollbar {
-  height: 6px;
+  height: 3px;
 }
 
 .thin-scrollbar::-webkit-scrollbar-track {

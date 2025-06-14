@@ -110,8 +110,6 @@ export default function ConversionFormulasPage() {
         </div>
         <div className='lg:w-1/5 flex flex-col gap-5 bg-white p-4 self-start sticky top-0'>
           <AdBanner />
-          <AdBanner />
-          <AdBanner />
         </div>
       </div>
     </main>

@@ -36,7 +36,6 @@ export function useCurrencyConverter(
         const json: ExchangeRateResponse = await res.json()
 
         const rate = json.data.mid
-        console.log('rate', rate)
         setConvertedAmount(amount * rate)
         localStorage.setItem('fromCurrency', fromCurrency)
         localStorage.setItem('toCurrency', toCurrency)

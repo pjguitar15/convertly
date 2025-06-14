@@ -41,7 +41,7 @@ const UnitInput: React.FC<UnitInputProps> = ({
   }, [category, categories, setFromUnit, setToUnit])
 
   return (
-    <div className='relative w-full'>
+    <div className='relative lg:min-w-xl'>
       <input
         type='text'
         value={inputValue}

@@ -23,17 +23,22 @@ const categoryPageInfo = {
         {
           label: 'Convert currencies',
           href: '/convert/currency',
-          description: ' using live exchange rates.',
+          description: ' with real-time exchange rates.',
         },
         {
-          label: 'conversion formula library',
+          label: 'Conversion formula library',
           href: '/conversion-formulas',
-          description: '.',
+          description: ' to learn the math behind conversions.',
         },
         {
-          label: 'live exchange rates',
-          href: '/live-exchange-rates',
-          description: ' for global currencies and crypto.',
+          label: 'Percentage calculator',
+          href: '/percentage-calculator',
+          description: ' for quick percentage increase, decrease, and more.',
+        },
+        {
+          label: 'BMI calculator',
+          href: '/bmi-calculator',
+          description: ' to check your body mass index and healthy range.',
         },
       ],
     },

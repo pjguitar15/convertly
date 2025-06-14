@@ -9,7 +9,7 @@ import CategoryTitle from '@/components/unit-conversion/CategoryTitle'
 export default function Home() {
   const { category } = useUnits()
   return (
-    <div className='p-12 bg-white rounded-xl border border-stone-200 shadow mx-auto max-w-[1200px]'>
+    <div className='p-12 bg-white rounded-xl border border-stone-200 shadow mx-auto max-w-7xl'>
       <CategoryTitle category={category} />
 
       <div className='block lg:hidden mb-4'>

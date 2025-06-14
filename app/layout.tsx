@@ -2,9 +2,11 @@ import './globals.css'
 import { Inter } from 'next/font/google'
 import { UnitProvider } from '@/context/UnitContext'
 import type { Metadata } from 'next'
-import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
 import AdSense from '@/components/Adsense'
+import { Toaster } from 'react-hot-toast'
+import { TrackVisitor } from '@/components/TrackVisitor'
+import ClientNavbarWrapper from '@/components/ClientNavbarWrapper'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -40,7 +42,6 @@ export const metadata: Metadata = {
     apple: '/apple-touch-icon.png',
     shortcut: '/favicon-32x32.png',
   },
-  themeColor: '#ffffff',
   manifest: '/site.webmanifest',
   robots: {
     index: true,
@@ -59,10 +60,12 @@ export default function RootLayout({
         <AdSense pId={`ca-pub-${process.env.ADSENSE_PID}`} />
       </head>
       <body className={`${inter.className} `}>
+        <TrackVisitor />
         <UnitProvider>
           <div>
-            <Navbar />
+            <ClientNavbarWrapper />
             <div className='bg-stone-200'>{children}</div>
+            <Toaster position='top-right' />
             <Footer />
           </div>
         </UnitProvider>

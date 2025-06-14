@@ -12,11 +12,19 @@ export const navbarLinks = [
     path: '/conversion-formulas',
   },
   {
-    name: 'Live Exchange Rates',
-    path: '/live-exchange-rates',
+    name: 'Percentage Calculator',
+    path: '/percentage-calculator',
+  },
+  {
+    name: 'BMI Calculator',
+    path: '/bmi-calculator',
   },
   {
     name: 'Support',
     path: '/support',
+  },
+  {
+    name: 'Contact',
+    path: '/contact',
   },
 ]

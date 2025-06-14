@@ -9,9 +9,6 @@ const nextConfig: NextConfig = {
       new URL(
         'https://cdn.rareblocks.xyz/collection/clarity/images/hero/1/avatar-female.png',
       ),
-      new URL(
-        'https://cdn.rareblocks.xyz/collection/clarity/images/hero/1/illustration.png',
-      ),
     ],
   },
 }

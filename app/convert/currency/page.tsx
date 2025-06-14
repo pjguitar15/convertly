@@ -10,7 +10,6 @@ const currencyPageInfo = {
     'Easily convert between world currencies using up-to-date exchange rates from reliable financial sources.',
     'Whether you are traveling, shopping online internationally, or managing business transactions, this page helps you get accurate conversions in real time.',
     'Simply enter the amount, choose your source and target currencies, and let the converter do the rest—no manual calculations needed.',
-    'You can also view live exchange trends and switch to crypto or fiat pairs effortlessly.',
     {
       text: 'Looking for more tools?',
       subLinks: [
@@ -26,9 +25,15 @@ const currencyPageInfo = {
             ' for physical measurements like length, mass, and temperature.',
         },
         {
-          label: 'Live exchange rates',
-          href: '/live-exchange-rates',
-          description: ' to see real-time currency movement.',
+          label: 'Percentage calculator',
+          href: '/percentage-calculator',
+          description: ' for quick percentage increase, decrease, and more.',
+        },
+        {
+          label: 'BMI calculator',
+          href: '/bmi-calculator',
+          description:
+            ' to check your body mass index and healthy weight range.',
         },
       ],
     },

@@ -20,21 +20,16 @@ export default function Converter() {
 
   useEffect(() => {
     const val = parseFloat(inputA)
-    console.log('val', val)
-    console.log()
     if (!isNaN(val)) {
       const res = convert(category, fromUnit, toUnit, val)
-      console.log('check params', { category, fromUnit, toUnit, val })
-      console.log('res for inputB', res)
       setInputB(res.toString())
     } else {
-      console.log('Invalid inputA value:', inputA)
       setInputB('')
     }
   }, [inputA, setInputB, inputB, fromUnit, toUnit, category])
 
   return (
-    <div className='lg:min-w-[700px] flex flex-col min-h-full'>
+    <div className='flex flex-col min-h-full'>
       {/* Top (input) section with flexible growth */}
       <div className='flex flex-col gap-4 mb-4 flex-grow'>
         <UnitInput

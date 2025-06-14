@@ -34,15 +34,6 @@ const Hero = () => {
               See Features <AiOutlineArrowRight />
             </Link>
           </div>
-
-          <div className='mt-10'>
-            <p className='text-sm uppercase tracking-widest text-stone-400 mb-2'>
-              Upcoming
-            </p>
-            <div className='inline-flex items-center gap-2 bg-stone-200 text-stone-600 px-4 py-2 rounded-full text-sm font-medium'>
-              💱 Live Exchange Rates — Coming Soon
-            </div>
-          </div>
         </div>
 
         <div className='hidden lg:block'>

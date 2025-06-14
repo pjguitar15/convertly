@@ -18,8 +18,8 @@ const Navbar = () => {
       <div className='container mx-auto flex items-center justify-between py-6 px-4 md:px-0'>
         <Logo href='/' />
 
-        {/* Desktop Links */}
-        <div className='hidden lg:flex gap-4 overflow-x-auto whitespace-nowrap max-w-full'>
+        {/* Desktop + mid screen Links with thin scrollbar */}
+        <div className='hidden lg:flex gap-4 overflow-x-auto whitespace-nowrap max-w-full thin-scrollbar'>
           {navbarLinks.map((link) => {
             const isActive = pathname === link.path
             return (

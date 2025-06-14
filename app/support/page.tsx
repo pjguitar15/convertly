@@ -1,18 +1,14 @@
 import CenterItems from '@/components/CenterItems'
-import StillInProgress from '@/components/StillInProgress'
+import SupportPage from '@/components/support/SupportPage'
 import React from 'react'
 
-export default async function page() {
-  await new Promise((resolve) => setTimeout(resolve, 500)) // Simulate a delay
+export default async function Page() {
+  // Simulate a slight delay
+  await new Promise((resolve) => setTimeout(resolve, 500))
+
   return (
-    <CenterItems>
-      <StillInProgress
-        icon={<span className='text-yellow-500'>🚧</span>}
-        title='Support Page'
-        description='This page is still in progress. We are working hard to bring you the best support experience.'
-        buttonText='Convert Units Instead'
-        navigateTo='/'
-      />
+    <CenterItems className='flex flex-col justify-center items-center text-center mx-auto p-8'>
+      <SupportPage />
     </CenterItems>
   )
 }
