@@ -1,24 +1,24 @@
 ## ✨ Features
 
-✅ **App Router** — Modern file-based routing with layouts and nested routes  
-✅ **API Routes** — Easily build backend endpoints with serverless functions  
-✅ **Optimized Fonts** — Uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) and [Geist](https://vercel.com/font) for automatic font optimization  
-✅ **TypeScript** — Strict typing for better maintainability and developer experience  
-✅ **Ready for Vercel** — Deploy instantly with zero config on [Vercel](https://vercel.com)
-
+✅ **Unit Converter** — Convert length, weight, volume, temperature, area, speed, and more, all in one place.  
+✅ **Currency Converter** — Instantly convert currencies using up-to-date exchange rates for accurate results.  
+✅ **Percentage Calculator** — Quickly calculate discounts, percentage change, or what percentage one number is of another.  
+✅ **BMI Calculator** — Check your Body Mass Index to see if you’re within a healthy range.  
+✅ **Conversion Formulas** — Browse and search easy-to-understand formulas for different unit conversions.  
+✅ **Fast & Accurate** — Clean design and smart logic ensure conversions are quick and reliable.  
+✅ **Free & Easy to Use** — 100% free with no sign-up needed — convert anything, anytime!
 
 ## 💙 Contributing
 
-We welcome your feedback and contributions!
+We love your feedback and ideas!
 
-- 🐛 **Report bugs** by opening issues
-- ✨ **Request features** by creating issues
-- 🔧 **Submit pull requests** to contribute code
+- 🐛 **Report bugs** — Open an issue if you find something not working.
+- ✨ **Request features** — Have a suggestion? Create an issue to tell us!
+- 🔧 **Submit pull requests** — Contribute improvements, new calculators, or fixes.
 
-Your support helps improve this project for everyone.
+Your contributions make this tool better for everyone.
 
-## 🎉 Built with Next.js
+## 🎉 Built for Everyone
 
-Happy coding! ✨🚀  
-This project is proudly built with [Next.js](https://nextjs.org) — The React Framework for Production.
-
+Happy converting! ✨🚀  
+This project is designed to help you convert like a pro — anytime, anywhere.
