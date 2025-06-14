@@ -1,27 +1,26 @@
-import { MongoClient, Db } from 'mongodb'
+import { MongoClient } from 'mongodb'
 
 const uri = process.env.MONGO_DB_STRING!
-if (!uri) throw new Error('Please define MONGO_DB_STRING in .env.local')
+if (!uri)
+  throw new Error('Please define MONGO_DB_STRING in your environment variables')
 
-let mongoClient: MongoClient
-
-const globalWithMongo = globalThis as typeof globalThis & {
-  mongoClient?: MongoClient
+declare global {
+  // eslint-disable-next-line no-var
+  var _mongoClientPromise: Promise<MongoClient> | undefined
 }
 
-if (process.env.NODE_ENV === 'production') {
-  mongoClient = new MongoClient(uri)
-} else {
-  if (!globalWithMongo.mongoClient) {
-    globalWithMongo.mongoClient = new MongoClient(uri)
+let client: MongoClient
+let clientPromise: Promise<MongoClient>
+
+if (process.env.NODE_ENV === 'development') {
+  if (!global._mongoClientPromise) {
+    client = new MongoClient(uri)
+    global._mongoClientPromise = client.connect()
   }
-  mongoClient = globalWithMongo.mongoClient
+  clientPromise = global._mongoClientPromise
+} else {
+  client = new MongoClient(uri)
+  clientPromise = client.connect()
 }
 
-// ✅ Modern helper to get a database instance
-export async function getDb(): Promise<Db> {
-  await mongoClient.connect() // safe, idempotent in v4+
-  return mongoClient.db(process.env.MONGO_DB_NAME)
-}
-
-export default mongoClient
+export default clientPromise

@@ -1,7 +1,7 @@
 'use client'
 
 import Link from 'next/link'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { useRouter, usePathname } from 'next/navigation'
 
 export default function AdminLayout({
@@ -11,19 +11,35 @@ export default function AdminLayout({
 }) {
   const router = useRouter()
   const pathname = usePathname()
+  const [authorized, setAuthorized] = useState(false)
 
   useEffect(() => {
     const isAdmin = localStorage.getItem('isAdmin')
-    if (isAdmin !== 'true') {
-      router.push('/admin/login')
+    if (isAdmin === 'true') {
+      setAuthorized(true)
+    } else {
+      // Smooth redirect with slight delay
+      setTimeout(() => {
+        router.push('/admin/login')
+      }, 100)
     }
-  }, [])
+  }, [router])
+
+  const handleLogout = () => {
+    localStorage.removeItem('isAdmin')
+    router.push('/admin/login')
+  }
 
   const links = [
     { href: '/admin/protected/contact-responses', label: 'Contact Responses' },
     { href: '/admin/protected/feedbacks', label: 'Feedbacks' },
     { href: '/admin/protected/visitors', label: 'Visitors' },
   ]
+
+  if (!authorized) {
+    // Block sidebar & main while checking auth
+    return null // or return <div>Loading...</div>
+  }
 
   return (
     <div className='flex min-h-screen'>
@@ -44,12 +60,12 @@ export default function AdminLayout({
           </Link>
         ))}
 
-        <Link
-          href='/admin/login'
+        <button
+          onClick={handleLogout}
           className='mt-auto text-red-300 hover:underline'
         >
           Logout
-        </Link>
+        </button>
       </aside>
 
       <main className='flex-1 p-8 bg-stone-200'>{children}</main>

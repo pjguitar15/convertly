@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import toast from 'react-hot-toast'
 
@@ -8,7 +8,18 @@ export default function AdminLoginPage() {
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
   const [loading, setLoading] = useState(false)
+  const [checking, setChecking] = useState(true)
   const router = useRouter()
+
+  useEffect(() => {
+    const isAdmin = localStorage.getItem('isAdmin')
+    if (isAdmin === 'true') {
+      // Already logged in → redirect
+      router.push('/admin/protected/contact-responses')
+    } else {
+      setChecking(false)
+    }
+  }, [router])
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -28,6 +39,11 @@ export default function AdminLoginPage() {
       toast.error(data.error || 'Login failed')
     }
     setLoading(false)
+  }
+
+  if (checking) {
+    // Block render while checking session
+    return null // or <div>Loading...</div>
   }
 
   return (

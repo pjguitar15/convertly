@@ -1,17 +1,16 @@
 import { NextResponse } from 'next/server'
-import mongoClient from '@/lib/mongodb'
+import clientPromise from '@/lib/mongodb'
 
 export async function POST(req: Request) {
   try {
-    const body = await req.json()
-    const { name, email, message } = body
+    const { name, email, message } = await req.json()
 
-    if (!name || !email || !message) {
-      return NextResponse.json({ error: 'Missing fields' }, { status: 400 })
-    }
+    if (!name) throw new Error('Missing name')
+    if (!email) throw new Error('Missing email')
+    if (!message) throw new Error('Missing message')
 
-    const dbName = process.env.MONGO_DB_NAME!
-    const db = mongoClient.db(dbName)
+    const client = await clientPromise
+    const db = client.db(process.env.MONGO_DB_NAME)
 
     await db.collection('contact-responses').insertOne({
       name,
@@ -22,7 +21,13 @@ export async function POST(req: Request) {
 
     return NextResponse.json({ success: true })
   } catch (err) {
-    console.error(err)
-    return NextResponse.json({ error: 'Server error' }, { status: 500 })
+    console.error('[API: submit-response]', err)
+    if (err instanceof Error && err.message.startsWith('Missing')) {
+      return NextResponse.json({ error: err.message }, { status: 400 })
+    }
+    return NextResponse.json(
+      { error: 'Internal server error' },
+      { status: 500 },
+    )
   }
 }

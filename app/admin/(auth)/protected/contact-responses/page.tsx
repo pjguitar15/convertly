@@ -1,15 +1,17 @@
-import { getDb } from '@/lib/mongodb'
+import clientPromise from '@/lib/mongodb'
 import type { ContactResponse } from '@/types/ContactResponse'
 import AdminDataViewer from '../../../../../components/admin/ContactResponses'
+import AdminGuard from '@/components/AdminGuard'
 
 export default async function ContactResponsesPage() {
   let responses: ContactResponse[] = []
 
   try {
-    const db = await getDb()
+    const client = await clientPromise
+    const db = client.db(process.env.MONGO_DB_NAME)
+
     const raw = await db.collection('contact-responses').find().toArray()
 
-    // Safely map _id & createdAt to strings:
     responses = raw.map((doc) => ({
       _id: doc._id.toString(),
       name: doc.name,
@@ -22,5 +24,9 @@ export default async function ContactResponsesPage() {
     console.error('[Contact Responses] Failed to load:', error)
   }
 
-  return <AdminDataViewer title='Contact Responses' data={responses} />
+  return (
+    <AdminGuard>
+      <AdminDataViewer title='Contact Responses' data={responses} />
+    </AdminGuard>
+  )
 }

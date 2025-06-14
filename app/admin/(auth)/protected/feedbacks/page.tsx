@@ -1,12 +1,15 @@
 import FeedbackResponses from '@/components/admin/FeedbackResponses'
-import { getDb } from '@/lib/mongodb'
+import AdminGuard from '@/components/AdminGuard'
+import clientPromise from '@/lib/mongodb'
 import { Feedback } from '@/types/FeedbackResponse'
 
 export default async function FeedbacksPage() {
   let feedbacks: Feedback[] = []
 
   try {
-    const db = await getDb()
+    const client = await clientPromise
+    const db = client.db(process.env.MONGO_DB_NAME)
+
     const raw = await db.collection('feedback').find().toArray()
 
     feedbacks = raw.map((doc) => ({
@@ -20,5 +23,9 @@ export default async function FeedbacksPage() {
     console.error('[Feedbacks] Failed to load:', error)
   }
 
-  return <FeedbackResponses title='Feedbacks' data={feedbacks} />
+  return (
+    <AdminGuard>
+      <FeedbackResponses title='Feedbacks' data={feedbacks} />
+    </AdminGuard>
+  )
 }

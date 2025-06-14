@@ -60,7 +60,7 @@ export default function FeedbackResponses({
                   <label className='block text-xs text-stone-500 mb-1'>
                     Message
                   </label>
-                  <div className='w-full bg-stone-200 text-stone-700 rounded px-3 py-2 whitespace-pre-line'>
+                  <div className='w-full bg-stone-200 text-stone-700 rounded px-3 py-2 whitespace-pre-line break-words'>
                     {item.message}
                   </div>
                 </div>

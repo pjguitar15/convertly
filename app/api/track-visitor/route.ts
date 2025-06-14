@@ -1,19 +1,19 @@
-import { getDb } from '@/lib/mongodb'
+import clientPromise from '@/lib/mongodb'
 import { NextResponse } from 'next/server'
 
 export async function POST(req: Request) {
   try {
-    const body = await req.json()
-    const { visitorId } = body
+    const { visitorId } = await req.json()
 
     if (!visitorId) {
-      return NextResponse.json({ error: 'Missing visitorId.' }, { status: 400 })
+      throw new Error('Missing visitorId')
     }
 
     const ip = req.headers.get('x-forwarded-for')?.split(',')[0] || ''
     const userAgent = req.headers.get('user-agent') || ''
 
-    const db = await getDb()
+    const client = await clientPromise
+    const db = client.db(process.env.MONGO_DB_NAME)
 
     await db.collection('visitors').updateOne(
       { visitorId },
@@ -31,10 +31,13 @@ export async function POST(req: Request) {
     )
 
     return NextResponse.json({ message: 'Visitor tracked' })
-  } catch (error) {
-    console.error('[API: track-visitor]', error)
+  } catch (err) {
+    console.error('[API: track-visitor]', err)
+    if (err instanceof Error && err.message.startsWith('Missing')) {
+      return NextResponse.json({ error: err.message }, { status: 400 })
+    }
     return NextResponse.json(
-      { error: 'Internal Server Error' },
+      { error: 'Internal server error' },
       { status: 500 },
     )
   }
