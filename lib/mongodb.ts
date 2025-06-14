@@ -1,24 +1,40 @@
 import { MongoClient } from 'mongodb'
 
-const uri = process.env.NEXT_PUBLIC_MONGO_DB_STRING!
-if (!uri)
-  throw new Error('Please define MONGO_DB_STRING in your environment variables')
+// ✅ Use server-only env variable
+const uri = process.env.MONGO_DB_STRING
+const dbName = process.env.MONGO_DB_NAME
 
+if (!uri) {
+  throw new Error(
+    '❌ MONGO_DB_STRING is missing. Please set it in your Vercel project settings.',
+  )
+}
+
+if (!dbName) {
+  throw new Error(
+    '❌ MONGO_DB_NAME is missing. Please set it in your Vercel project settings.',
+  )
+}
+
+// ✅ Attach to globalThis to reuse connection in dev
 const globalWithMongo = globalThis as typeof globalThis & {
-  _mongoClient?: MongoClient
+  _mongoClientPromise?: Promise<MongoClient>
 }
 
 let client: MongoClient
+let clientPromise: Promise<MongoClient>
 
-if (process.env.NEXT_PUBLIC_NODE_ENV === 'production') {
-  // ✅ In production, always create a new client — serverless best practice
+if (process.env.NODE_ENV === 'production') {
+  // In production, always create a new client
   client = new MongoClient(uri)
+  clientPromise = client.connect()
 } else {
-  // ✅ In dev, use globalThis to reuse the client across hot reloads
-  if (!globalWithMongo._mongoClient) {
-    globalWithMongo._mongoClient = new MongoClient(uri)
+  // In dev, reuse promise to avoid creating many clients during hot reloads
+  if (!globalWithMongo._mongoClientPromise) {
+    client = new MongoClient(uri)
+    globalWithMongo._mongoClientPromise = client.connect()
   }
-  client = globalWithMongo._mongoClient
+  clientPromise = globalWithMongo._mongoClientPromise
 }
 
-export default client
+export default clientPromise
