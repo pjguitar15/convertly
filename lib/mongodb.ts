@@ -1,8 +1,8 @@
 import { MongoClient } from 'mongodb'
 
 // ✅ Use server-only env variable
-const uri = process.env.MONGO_DB_STRING
-const dbName = process.env.MONGO_DB_NAME
+const uri = process.env.NEXT_PUBLIC_MONGO_DB_STRING
+const dbName = process.env.NEXT_PUBLIC_MONGO_DB_NAME
 
 if (!uri) {
   throw new Error(
