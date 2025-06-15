@@ -5,6 +5,7 @@ import React, { useEffect, useState } from 'react'
 import { useCurrencyConverter } from '@/hooks/useCurrencyConverter'
 import ReactCountryFlag from 'react-country-flag'
 import { MdAttachMoney } from 'react-icons/md'
+import { HiSwitchHorizontal } from 'react-icons/hi' // ✅ nice switch icon
 
 function getCountryCode(currencyCode: string): string {
   // ISO 3166-1 alpha-2
@@ -13,8 +14,8 @@ function getCountryCode(currencyCode: string): string {
 
 export default function MainCurrencyPage() {
   const [amount, setAmount] = useState<string>('') // ✅ string state
-  const [fromCurrency, setFromCurrency] = useState<string>('USD')
-  const [toCurrency, setToCurrency] = useState<string>('PHP')
+  const [fromCurrency, setFromCurrency] = useState<string>('PHP')
+  const [toCurrency, setToCurrency] = useState<string>('USD')
 
   // ✅ cast to number for the hook, or null if empty
   const { convertedAmount, loading, error } = useCurrencyConverter(
@@ -31,6 +32,12 @@ export default function MainCurrencyPage() {
     if (savedTo) setToCurrency(savedTo)
     if (savedAmount) setAmount(savedAmount) // ✅ no Number() here
   }, [])
+
+  // ✅ Handler to switch currencies
+  const handleSwitchCurrencies = () => {
+    setFromCurrency(toCurrency)
+    setToCurrency(fromCurrency)
+  }
 
   return (
     <>
@@ -50,27 +57,43 @@ export default function MainCurrencyPage() {
             placeholder='Enter amount'
           />
 
-          <div className='flex flex-col md:flex-row gap-3'>
-            {[
-              { value: fromCurrency, setter: setFromCurrency },
-              { value: toCurrency, setter: setToCurrency },
-            ].map(({ value, setter }, idx) => (
-              <select
-                key={idx}
-                onChange={(e) => setter(e.target.value)}
-                value={value}
-                className='outline-0 border-0 bg-stone-200 px-4 text-stone-900 w-full rounded py-4'
-              >
-                {currencies.map((currency) => (
-                  <option key={currency.code} value={currency.code}>
-                    {currency.name} ({currency.code})
-                  </option>
-                ))}
-              </select>
-            ))}
+          <div className='flex flex-col md:flex-row gap-3 items-center'>
+            <select
+              onChange={(e) => setFromCurrency(e.target.value)}
+              value={fromCurrency}
+              className='outline-0 border-0 bg-stone-200 px-4 text-stone-900 w-full rounded py-4'
+            >
+              {currencies.map((currency) => (
+                <option key={currency.code} value={currency.code}>
+                  {currency.name} ({currency.code})
+                </option>
+              ))}
+            </select>
+
+            {/* ✅ Switch Button */}
+            <button
+              onClick={handleSwitchCurrencies}
+              className='p-3 bg-stone-800 text-white rounded-full hover:bg-stone-700 transition cursor-pointer'
+              aria-label='Switch currencies'
+            >
+              <HiSwitchHorizontal className='text-2xl' />
+            </button>
+
+            <select
+              onChange={(e) => setToCurrency(e.target.value)}
+              value={toCurrency}
+              className='outline-0 border-0 bg-stone-200 px-4 text-stone-900 w-full rounded py-4'
+            >
+              {currencies.map((currency) => (
+                <option key={currency.code} value={currency.code}>
+                  {currency.name} ({currency.code})
+                </option>
+              ))}
+            </select>
           </div>
 
           <hr className='mt-4 border border-stone-200' />
+
           <div className='mt-6 text-center text-xl md:text-2xl text-stone-900'>
             {loading && <p>Converting...</p>}
             {error && <p className='text-red-500'>{error}</p>}
@@ -97,6 +120,7 @@ export default function MainCurrencyPage() {
               </p>
             )}
           </div>
+
           <p className='text-sm text-stone-500 mt-2 text-center'>
             Exchange rates are updated regularly based on the latest data from
             reliable financial sources.
