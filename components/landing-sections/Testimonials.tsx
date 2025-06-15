@@ -9,8 +9,8 @@ export default function Testimonials() {
     },
     {
       quote:
-        '“I use it daily for my assignments and travel planning. Super accurate and no unnecessary clutter!”',
-      author: '— Mark S., University Student',
+        '“The website seems to be really good, I immediately get what I need, and it is really easy to use!”',
+      author: '— Jason Teves, Graphic Designer',
     },
     {
       quote:
