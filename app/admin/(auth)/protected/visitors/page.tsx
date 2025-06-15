@@ -3,6 +3,8 @@ import AdminGuard from '@/components/AdminGuard'
 import clientPromise from '@/lib/mongodb'
 import { Visitor } from '@/types/VisitorResponse'
 
+export const dynamic = 'force-dynamic'
+
 export default async function VisitorsPage() {
   let visitors: Visitor[] = []
 

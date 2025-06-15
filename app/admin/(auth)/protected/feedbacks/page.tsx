@@ -3,6 +3,8 @@ import AdminGuard from '@/components/AdminGuard'
 import clientPromise from '@/lib/mongodb'
 import { Feedback } from '@/types/FeedbackResponse'
 
+export const dynamic = 'force-dynamic'
+
 export default async function FeedbacksPage() {
   let feedbacks: Feedback[] = []
 

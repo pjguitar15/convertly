@@ -3,6 +3,8 @@ import type { ContactResponse } from '@/types/ContactResponse'
 import AdminDataViewer from '../../../../../components/admin/ContactResponses'
 import AdminGuard from '@/components/AdminGuard'
 
+export const dynamic = 'force-dynamic'
+
 export default async function ContactResponsesPage() {
   let responses: ContactResponse[] = []
 
