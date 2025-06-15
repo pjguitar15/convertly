@@ -114,6 +114,36 @@ const Features = () => {
               Time
             </Link>
             <Link
+              href='/convert/speed'
+              className='px-4 py-2 bg-stone-800 text-white rounded-full text-sm'
+            >
+              Speed
+            </Link>
+            <Link
+              href='/convert/volume'
+              className='px-4 py-2 bg-stone-800 text-white rounded-full text-sm'
+            >
+              Volume
+            </Link>
+            <Link
+              href='/convert-currency'
+              className='px-4 py-2 bg-stone-800 text-white rounded-full text-sm'
+            >
+              Currency
+            </Link>
+            <Link
+              href='/percentage-calculator'
+              className='px-4 py-2 bg-stone-800 text-white rounded-full text-sm'
+            >
+              Percentage
+            </Link>
+            <Link
+              href='/bmi-calculator'
+              className='px-4 py-2 bg-stone-800 text-white rounded-full text-sm'
+            >
+              BMI
+            </Link>
+            <Link
               href='/conversion-formulas'
               className='px-4 py-2 bg-green-600 hover:bg-green-500 text-white rounded-full text-sm'
             >

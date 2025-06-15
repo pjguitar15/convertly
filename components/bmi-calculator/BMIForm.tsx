@@ -1,13 +1,13 @@
 'use client'
 
 type BMIFormProps = {
-  weight: number
-  height: number
-  age: number
+  weight: string // ✅ string, not number
+  height: string // ✅ string, not number
+  age: string // ✅ string, not number
   gender: 'male' | 'female'
-  setWeight: (v: number) => void
-  setHeight: (v: number) => void
-  setAge: (v: number) => void
+  setWeight: (v: string) => void // ✅ accepts string now
+  setHeight: (v: string) => void // ✅ accepts string now
+  setAge: (v: string) => void // ✅ accepts string now
   setGender: (v: 'male' | 'female') => void
 }
 
@@ -28,8 +28,8 @@ export default function BMIForm({
           Height (cm):
         </label>
         <input
-          value={height}
-          onChange={(e) => setHeight(Number(e.target.value))}
+          value={height} // ✅ stays string
+          onChange={(e) => setHeight(e.target.value)} // ✅ pass raw string
           type='number'
           placeholder='Enter your height in cm'
           className='p-3 rounded outline-none text-center text-lg bg-stone-200 text-stone-900 w-full'
@@ -42,7 +42,7 @@ export default function BMIForm({
         </label>
         <input
           value={weight}
-          onChange={(e) => setWeight(Number(e.target.value))}
+          onChange={(e) => setWeight(e.target.value)}
           type='number'
           placeholder='Enter your weight in kg'
           className='p-3 rounded outline-none text-center text-lg bg-stone-200 text-stone-900 w-full'
@@ -55,7 +55,7 @@ export default function BMIForm({
         </label>
         <input
           value={age}
-          onChange={(e) => setAge(Number(e.target.value))}
+          onChange={(e) => setAge(e.target.value)}
           type='number'
           placeholder='Enter your age'
           className='p-3 rounded outline-none text-center text-lg bg-stone-200 text-stone-900 w-full'

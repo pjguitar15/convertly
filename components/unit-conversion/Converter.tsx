@@ -4,6 +4,7 @@ import { useUnits } from '@/context/UnitContext'
 import { convert } from '@/lib/conversion'
 import UnitInput from './UnitInput'
 import Link from 'next/link'
+import { formatUnit } from '@/types/formatUnit'
 
 export default function Converter() {
   const {
@@ -53,8 +54,9 @@ export default function Converter() {
           onSelectChange={(e) => setToUnit(e.target.value)}
         />
         <p className='w-full p-3 rounded text-sm text-stone-400'>
-          <strong>Conversion:</strong> 1 {fromUnit} ={' '}
-          {convert(category, fromUnit, toUnit, 1)} {toUnit}
+          <strong>Conversion:</strong> 1 {formatUnit(fromUnit, 1)} ={' '}
+          {convert(category, fromUnit, toUnit, 1)}{' '}
+          {formatUnit(toUnit, convert(category, fromUnit, toUnit, 1))}
         </p>
       </div>
 

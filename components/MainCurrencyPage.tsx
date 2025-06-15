@@ -1,9 +1,10 @@
 'use client'
+
 import { currencies } from '@/constants/currencies'
 import React, { useEffect, useState } from 'react'
 import { useCurrencyConverter } from '@/hooks/useCurrencyConverter'
-import { AiOutlineMoneyCollect } from 'react-icons/ai'
 import ReactCountryFlag from 'react-country-flag'
+import { MdAttachMoney } from 'react-icons/md'
 
 function getCountryCode(currencyCode: string): string {
   // ISO 3166-1 alpha-2
@@ -11,14 +12,15 @@ function getCountryCode(currencyCode: string): string {
 }
 
 export default function MainCurrencyPage() {
-  const [amount, setAmount] = useState<number>(1)
+  const [amount, setAmount] = useState<string>('') // ✅ string state
   const [fromCurrency, setFromCurrency] = useState<string>('USD')
-  const [toCurrency, setToCurrency] = useState<string>('EUR')
+  const [toCurrency, setToCurrency] = useState<string>('PHP')
 
+  // ✅ cast to number for the hook, or null if empty
   const { convertedAmount, loading, error } = useCurrencyConverter(
     fromCurrency,
     toCurrency,
-    amount,
+    amount ? Number(amount) : null,
   )
 
   useEffect(() => {
@@ -27,7 +29,7 @@ export default function MainCurrencyPage() {
     const savedAmount = localStorage.getItem('amount')
     if (savedFrom) setFromCurrency(savedFrom)
     if (savedTo) setToCurrency(savedTo)
-    if (savedAmount) setAmount(Number(savedAmount))
+    if (savedAmount) setAmount(savedAmount) // ✅ no Number() here
   }, [])
 
   return (
@@ -35,14 +37,14 @@ export default function MainCurrencyPage() {
       {loading && <div className='loader-bar' />}
       <main className='bg-white border border-stone-100 shadow rounded-xl p-14 mx-auto'>
         <h1 className='text-2xl lg:text-3xl font-bold mb-8 text-center flex justify-center items-center gap-2 text-stone-900'>
-          <AiOutlineMoneyCollect className='text-5xl md:text-3xl' />
+          <MdAttachMoney className='text-5xl md:text-3xl' />
           <span className='hidden md:inline-block'>Convert Currency</span>
         </h1>
 
         <div className='flex flex-col gap-3'>
           <input
-            value={amount}
-            onChange={(e) => setAmount(Number(e.target.value))}
+            value={amount} // ✅ string
+            onChange={(e) => setAmount(e.target.value)} // ✅ store as string
             type='number'
             className='p-2 rounded outline-0 text-center text-xl bg-stone-200 text-stone-900 w-full py-4 px-4'
             placeholder='Enter amount'
@@ -79,9 +81,13 @@ export default function MainCurrencyPage() {
                   svg
                   style={{ fontSize: '1.5em' }}
                 />
-                {amount} {fromCurrency} ={' '}
+                {Number(amount).toLocaleString()} {fromCurrency} ={' '}
                 <strong>
-                  {convertedAmount.toFixed(2)} {toCurrency}
+                  {convertedAmount.toLocaleString(undefined, {
+                    minimumFractionDigits: 2,
+                    maximumFractionDigits: 2,
+                  })}{' '}
+                  {toCurrency}
                 </strong>
                 <ReactCountryFlag
                   countryCode={getCountryCode(toCurrency)}

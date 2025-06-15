@@ -9,7 +9,7 @@ export default function HowItWorks() {
       title: 'Unit Converter',
       desc: 'Convert between length, mass, temperature, time, area, volume, speed, and energy — all in one place.',
       icon: <AiOutlineColumnWidth className='text-6xl text-stone-700' />,
-      link: '/convert/unit',
+      link: '/convert/length',
     },
     {
       title: 'Currency Converter',

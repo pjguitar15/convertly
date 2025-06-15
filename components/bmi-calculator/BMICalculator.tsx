@@ -7,9 +7,10 @@ import BMIStatus from './BMIStatus'
 import BMIExtraInfo from './BMIExtraInfo'
 
 export default function BMICalculator() {
-  const [weight, setWeight] = useState<number>(0)
-  const [height, setHeight] = useState<number>(0)
-  const [age, setAge] = useState<number>(25)
+  // ✅ Use string for input-friendly handling
+  const [weight, setWeight] = useState<string>('0')
+  const [height, setHeight] = useState<string>('0')
+  const [age, setAge] = useState<string>('25')
   const [gender, setGender] = useState<'male' | 'female'>('male')
   const [bmi, setBmi] = useState<number | null>(null)
   const [category, setCategory] = useState<string>('')
@@ -21,7 +22,12 @@ export default function BMICalculator() {
   >('idle')
 
   useEffect(() => {
-    if (weight > 0 && height > 0 && age > 0) {
+    // ✅ Parse once at top
+    const weightNumber = Number(weight)
+    const heightNumber = Number(height)
+    const ageNumber = Number(age)
+
+    if (weightNumber > 0 && heightNumber > 0 && ageNumber > 0) {
       setStatus('analyzing')
       setBmi(null)
       setCategory('')
@@ -37,8 +43,8 @@ export default function BMICalculator() {
       }, analyzingDuration)
 
       const generatingTimer = setTimeout(() => {
-        const heightInMeters = height / 100
-        const calculatedBMI = weight / (heightInMeters * heightInMeters)
+        const heightInMeters = heightNumber / 100
+        const calculatedBMI = weightNumber / (heightInMeters * heightInMeters)
         setBmi(calculatedBMI)
 
         if (calculatedBMI < 18.5) {
@@ -61,10 +67,12 @@ export default function BMICalculator() {
           `${minNormalWeight.toFixed(1)} kg – ${maxNormalWeight.toFixed(1)} kg`,
         )
 
-        // ✅ Use Mifflin-St Jeor for BMR:
+        // ✅ Mifflin-St Jeor for BMR:
         const bmr =
-          10 * weight + 6.25 * height - 5 * age + (gender === 'male' ? 5 : -161)
-        // Use a common sedentary factor:
+          10 * weightNumber +
+          6.25 * heightNumber -
+          5 * ageNumber +
+          (gender === 'male' ? 5 : -161)
         const estimatedCalories = bmr * 1.2
         setCalories(estimatedCalories)
 

@@ -4,22 +4,46 @@ import { useState } from 'react'
 import { AiOutlinePercentage } from 'react-icons/ai'
 
 export default function PercentageCalculator() {
-  const [base, setBase] = useState<number>(0)
-  const [percent, setPercent] = useState<number>(0)
+  // ✅ Store as strings to match input type
+  const [base, setBase] = useState<string>('100')
+  const [percent, setPercent] = useState<string>('5')
   const [result, setResult] = useState<string | null>(null)
 
+  // ✅ Safely convert when needed
   const handleCalculate = () => {
-    setResult(`${percent}% of ${base} is ${(base * percent) / 100}`)
+    const baseNumber = Number(base)
+    const percentNumber = Number(percent)
+    if (isNaN(baseNumber) || isNaN(percentNumber)) {
+      setResult('Please enter valid numbers.')
+      return
+    }
+    setResult(
+      `${percentNumber}% of ${baseNumber} is ${
+        (baseNumber * percentNumber) / 100
+      }`,
+    )
   }
 
   const handleIncrease = () => {
-    const increased = base + (base * percent) / 100
-    setResult(`${base} increased by ${percent}% is ${increased}`)
+    const baseNumber = Number(base)
+    const percentNumber = Number(percent)
+    if (isNaN(baseNumber) || isNaN(percentNumber)) {
+      setResult('Please enter valid numbers.')
+      return
+    }
+    const increased = baseNumber + (baseNumber * percentNumber) / 100
+    setResult(`${baseNumber} increased by ${percentNumber}% is ${increased}`)
   }
 
   const handleDecrease = () => {
-    const decreased = base - (base * percent) / 100
-    setResult(`${base} decreased by ${percent}% is ${decreased}`)
+    const baseNumber = Number(base)
+    const percentNumber = Number(percent)
+    if (isNaN(baseNumber) || isNaN(percentNumber)) {
+      setResult('Please enter valid numbers.')
+      return
+    }
+    const decreased = baseNumber - (baseNumber * percentNumber) / 100
+    setResult(`${baseNumber} decreased by ${percentNumber}% is ${decreased}`)
   }
 
   return (
@@ -36,7 +60,7 @@ export default function PercentageCalculator() {
           </label>
           <input
             value={base}
-            onChange={(e) => setBase(Number(e.target.value))}
+            onChange={(e) => setBase(e.target.value)}
             type='number'
             placeholder='Enter the base number'
             className='p-3 rounded outline-none text-center text-lg bg-stone-200 text-stone-900 w-full'
@@ -49,7 +73,7 @@ export default function PercentageCalculator() {
           </label>
           <input
             value={percent}
-            onChange={(e) => setPercent(Number(e.target.value))}
+            onChange={(e) => setPercent(e.target.value)}
             type='number'
             placeholder='Enter the percentage'
             className='p-3 rounded outline-none text-center text-lg bg-stone-200 text-stone-900 w-full'
@@ -61,19 +85,19 @@ export default function PercentageCalculator() {
             onClick={handleCalculate}
             className='bg-stone-800 hover:bg-stone-900 text-white rounded p-3 w-full'
           >
-            Calculate {percent}% of {base}
+            Calculate {percent || '...'}% of {base || '...'}
           </button>
           <button
             onClick={handleIncrease}
             className='bg-stone-700 hover:bg-stone-800 text-white rounded p-3 w-full'
           >
-            Increase {base} by {percent}%
+            Increase {base || '...'} by {percent || '...'}%
           </button>
           <button
             onClick={handleDecrease}
             className='bg-stone-700 hover:bg-stone-800 text-white rounded p-3 w-full'
           >
-            Decrease {base} by {percent}%
+            Decrease {base || '...'} by {percent || '...'}%
           </button>
         </div>
 

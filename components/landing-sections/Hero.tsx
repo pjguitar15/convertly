@@ -12,12 +12,11 @@ const Hero = () => {
       <div className='relative z-10 mx-auto grid grid-cols-1 lg:grid-cols-2 items-center'>
         <div>
           <h1 className='text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight mb-4'>
-            Convert Like a Pro
+            Your all-in-one conversion hub
           </h1>
           <p className='text-lg text-stone-500 max-w-xl'>
-            Your all-in-one tool for converting units—whether it is length,
-            mass, temperature, or even currency. Precision meets simplicity with
-            our lightning-fast converter.
+            Convert anything — units, currencies, percentages, BMI — instantly
+            and accurately, all in one place.
           </p>
 
           <div className='mt-8 flex flex-col sm:flex-row gap-4'>
