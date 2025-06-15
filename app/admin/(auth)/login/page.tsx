@@ -47,14 +47,14 @@ export default function AdminLoginPage() {
   }
 
   return (
-    <main className='flex items-center justify-center min-h-screen bg-white px-6 py-12'>
+    <main className='flex items-center justify-center min-h-screen bg-stone-200 px-6 py-12'>
       <div className='max-w-md w-full bg-stone-100 p-8 rounded shadow'>
-        <h1 className='text-2xl font-bold mb-6 text-stone-900'>Admin Login</h1>
+        <h1 className='text-xl font-bold mb-6 text-stone-900'>Admin Login</h1>
         <form onSubmit={handleLogin} className='flex flex-col gap-4'>
           <input
             type='text'
             placeholder='Username'
-            className='p-3 rounded outline-none bg-stone-200 text-stone-900 w-full text-base'
+            className='px-3 py-2 rounded outline-none bg-stone-200 text-stone-900 w-full text-sm'
             value={username}
             onChange={(e) => setUsername(e.target.value)}
             required
@@ -63,7 +63,7 @@ export default function AdminLoginPage() {
           <input
             type='password'
             placeholder='Password'
-            className='p-3 rounded outline-none bg-stone-200 text-stone-900 w-full text-base'
+            className='px-3 py-2 rounded outline-none bg-stone-200 text-stone-900 w-full text-sm'
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
@@ -71,7 +71,7 @@ export default function AdminLoginPage() {
           />
           <button
             type='submit'
-            className='bg-stone-800 hover:bg-stone-900 text-white font-bold py-3 px-6 rounded transition disabled:opacity-50'
+            className='bg-stone-800 hover:bg-stone-900 text-white font-bold py-2 px-6 rounded transition disabled:opacity-50 text-sm'
             disabled={loading}
           >
             {loading ? 'Logging in...' : 'Login'}
