@@ -14,7 +14,7 @@ const Logo: React.FC<LogoProps> = ({ href, className }) => {
   return (
     <Link
       href={href}
-      className={`flex items-center gap-2 text-stone-950 hover:opacity-90 transition hover:scale-120 px-4 lg:py-3 rounded ${className}`}
+      className={`flex items-center gap-2 text-stone-950 hover:opacity-90 transition px-4 lg:py-3 rounded ${className}`}
       aria-label='Convert Like a Pro Homepage'
     >
       <Image

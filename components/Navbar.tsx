@@ -85,7 +85,7 @@ const Navbar = () => {
             initial={{ height: 0, opacity: 0 }}
             animate={{ height: 'auto', opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
-            transition={{ duration: 0.3, ease: 'easeInOut' }}
+            transition={{ duration: 0.1, ease: 'easeInOut' }}
             className='lg:hidden bg-white overflow-hidden pb-4'
           >
             {navbarLinks.map((link) => {
