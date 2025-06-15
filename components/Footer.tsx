@@ -1,6 +1,7 @@
 import { navbarLinks } from '@/constants/navbarLinks'
 import Link from 'next/link'
 import { FaGithub, FaLinkedin, FaYoutube } from 'react-icons/fa'
+import Logo from './Logo'
 
 export default function Footer() {
   const socialLinks = [
@@ -26,7 +27,7 @@ export default function Footer() {
       <div className='max-w-7xl mx-auto px-6 py-10 grid grid-cols-1 md:grid-cols-3 gap-8'>
         {/* Logo & Description */}
         <div>
-          <h2 className='text-xl font-semibold mb-2'>Convert Like a Pro</h2>
+          <Logo className='mb-5 max-w-[180px]' href='/' />
           <p className='text-stone-600'>
             Your all-in-one unit converter tool. Accurate, fast, and built for
             every need.

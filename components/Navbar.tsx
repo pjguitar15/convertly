@@ -16,7 +16,7 @@ const Navbar = () => {
   return (
     <div className='fixed top-0 left-0 w-full z-50 bg-stone-200'>
       <div className='container mx-auto flex items-center justify-between py-6 px-4 md:px-0'>
-        <Logo href='/' />
+        <Logo className='max-w-[180px]' href='/' />
 
         {/* Desktop + mid screen Links with thin scrollbar */}
         <div className='hidden lg:flex gap-4 overflow-x-auto whitespace-nowrap max-w-full thin-scrollbar'>
