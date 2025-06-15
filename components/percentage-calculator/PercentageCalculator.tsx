@@ -48,7 +48,7 @@ export default function PercentageCalculator() {
   }
 
   return (
-    <main className='bg-white border border-stone-100 shadow rounded-xl p-8 md:p-18 mx-auto w-full max-w-3xl'>
+    <main className='bg-white border border-stone-100 shadow rounded-xl p-12 md:p-18 mx-auto w-full max-w-3xl'>
       <PageTransition>
         <h1 className='text-2xl lg:text-3xl font-bold mb-8 text-center flex justify-center items-center gap-2 text-stone-900'>
           <AiOutlinePercentage className='text-5xl md:text-3xl' />

@@ -2,67 +2,87 @@
 
 import Modal from '../Modal'
 import GCashQR from '../../public/gcash-qr.png'
+import BMCQR from '../../public/bmc_qr.png'
 import Image from 'next/image'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 
 type Props = {
   onClose: () => void
 }
 
 export default function DonateModal({ onClose }: Props) {
-  const [copied, setCopied] = useState(false)
+  const [country, setCountry] = useState('')
 
-  const handleCopy = () => {
-    navigator.clipboard.writeText('5363 4701 7819 5991')
-    setCopied(true)
-    setTimeout(() => setCopied(false), 1500)
-  }
+  useEffect(() => {
+    fetch('https://ipapi.co/json/')
+      .then((res) => res.json())
+      .then((data) => setCountry(data.country_code))
+      .catch(() => setCountry('PH'))
+  }, [])
 
   return (
     <Modal onClose={onClose}>
-      {/* GCash-like header */}
-      <div className='bg-blue-600 rounded-t-lg p-4 text-center text-white'>
-        <h2 className='text-2xl font-bold'>GCash</h2>
-      </div>
-
-      {/* Content Card */}
-      <div className='bg-white rounded-b-lg p-6 text-center shadow-lg -mt-1'>
-        <Image
-          src={GCashQR}
-          alt='GCash QR Code'
-          className='mx-auto mb-4 w-48 h-48 object-contain border'
-          width={200}
-          height={200}
-        />
-        <p className='text-xs text-stone-500 mb-4'>
-          Scan QR using your GCash app.
+      {/* Header: GCash if PH */}
+      <div className='bg-yellow-400 bg-gradient-to-r from-yellow-400 to-yellow-500 rounded-t-lg p-5 text-center text-stone-900 shadow-sm'>
+        <h2 className='text-2xl font-bold tracking-wide'>Support My Work</h2>
+        <p className='text-sm text-stone-800 mt-1'>
+          Your donation keeps this project alive ☕
         </p>
+      </div>
+      <div
+        className={`bg-white ${
+          country === 'PH' ? 'rounded-b-lg' : 'rounded-lg'
+        } p-6 text-center shadow-lg flex flex-col lg:flex-row gap-8 ${
+          country === 'PH' ? '-mt-1' : ''
+        }`}
+      >
+        {/* GCash block (PH only) */}
+        {country === 'PH' && (
+          <div className='flex flex-col items-center max-w-48'>
+            <Image
+              src={GCashQR}
+              alt='GCash QR Code'
+              className='mx-auto mb-4 w-48 h-48 object-contain border'
+              width={200}
+              height={200}
+            />
+            <p className='text-xs text-stone-500 mb-2'>Copy my number:</p>
 
-        <hr className='my-10 border-stone-300' />
-
-        {/* Bank Info */}
-        <div className='text-left text-sm text-stone-700'>
-          <p className='font-semibold text-stone-800 mb-2'>
-            Or donate via bank transfer:
-          </p>
-          <p>
-            <strong>Bank Name:</strong> BPI
-          </p>
-          <p>
-            <strong>Account Name:</strong> Philcob Josol
-          </p>
-          <p className='flex items-center gap-2'>
-            <strong>Account Number:</strong> 5363 4701 7819 5991
             <button
-              onClick={handleCopy}
-              className='ml-2 px-2 py-1 text-xs bg-stone-200 rounded hover:bg-stone-300 transition'
+              onClick={() => {
+                navigator.clipboard.writeText('09970832389') // your GCash number
+                alert('GCash number copied!')
+              }}
+              className='inline-block text-sm px-6 py-3 bg-blue-600 text-white font-semibold rounded-full hover:bg-blue-700 transition'
             >
-              {copied ? 'Copied!' : 'Copy'}
+              Copy GCash Number
             </button>
-          </p>
-          <p className='mt-2 text-xs text-stone-500'>
-            For donations only. Please contact me for large transfers.
-          </p>
+          </div>
+        )}
+
+        {/* Vertical Divider */}
+        {country === 'PH' && (
+          <div className='hidden lg:block w-px bg-stone-300'></div>
+        )}
+
+        {/* Buy Me a Coffee block (always visible) */}
+        <div className='flex-1'>
+          <Image
+            src={BMCQR}
+            alt='Buy Me a Coffee QR Code'
+            className='mx-auto mb-4 w-48 h-48 object-contain border'
+            width={200}
+            height={200}
+          />
+          <p className='text-xs text-stone-500 mb-2'>Or tap below:</p>
+          <a
+            href='https://www.buymeacoffee.com/philcobsuzuki'
+            target='_blank'
+            rel='noopener noreferrer'
+            className='inline-block text-sm px-6 py-3 bg-yellow-400 text-stone-900 font-semibold rounded-full hover:bg-yellow-500 transition'
+          >
+            Visit Buy Me a Coffee
+          </a>
         </div>
       </div>
     </Modal>

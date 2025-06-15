@@ -1,13 +1,18 @@
 'use client'
 
 import { conversionFormulas } from '@/constants/formulas'
-import { useState, useMemo } from 'react'
+import { useState, useMemo, useRef, useEffect } from 'react'
 import { AiOutlineSearch } from 'react-icons/ai'
 import AdBanner from '../AdBanner'
 import PageTransition from '../PageTransition'
+import { FaArrowLeft, FaChevronLeft, FaChevronRight } from 'react-icons/fa'
 
 export default function ConversionFormulasPage() {
   const [query, setQuery] = useState('')
+  const scrollRef = useRef<HTMLDivElement>(null)
+  const [showLeft, setShowLeft] = useState(false)
+  const [showRight, setShowRight] = useState(true)
+  const [visibleCount, setVisibleCount] = useState(5)
 
   const filteredFormulas = useMemo(() => {
     const lowerQuery = query.toLowerCase()
@@ -18,7 +23,41 @@ export default function ConversionFormulasPage() {
     )
   }, [query])
 
+  // Check scroll position to toggle buttons
+  const checkScroll = () => {
+    const el = scrollRef.current
+    if (!el) return
+
+    setShowLeft(el.scrollLeft > 0)
+    setShowRight(el.scrollLeft + el.clientWidth < el.scrollWidth)
+  }
+
+  // Scroll by pixels
+  const scroll = (distance: number) => {
+    if (scrollRef.current) {
+      scrollRef.current.scrollBy({
+        left: distance,
+        behavior: 'smooth',
+      })
+    }
+  }
+
+  // Listen to scroll events to toggle buttons live
+  useEffect(() => {
+    const el = scrollRef.current
+    if (!el) return
+    el.addEventListener('scroll', checkScroll)
+    checkScroll()
+    return () => el.removeEventListener('scroll', checkScroll)
+  }, [])
+
   const showSuggestions = query.trim() === ''
+
+  const handleLoadMore = () => {
+    setVisibleCount((prev) => prev + 5)
+  }
+
+  const visibleFormulas = filteredFormulas.slice(0, visibleCount)
 
   return (
     <main className='p-6 w-full'>
@@ -45,12 +84,25 @@ export default function ConversionFormulasPage() {
           )}
         </div>
 
+        {query && (
+          <button
+            onClick={() => setQuery('')}
+            className='cursor-pointer flex items-center gap-2 text-stone-600 hover:text-stone-800 mb-6 transition'
+          >
+            <FaArrowLeft className='text-base' />
+            <span className='underline'>Back</span>
+          </button>
+        )}
+
         {showSuggestions && (
-          <div className='mb-6'>
+          <div className='mb-6 relative'>
             <h2 className='text-xl font-semibold text-stone-700 mb-3'>
               Popular Conversions
             </h2>
-            <div className='flex gap-3 overflow-x-auto pb-1 thin-scrollbar'>
+            <div
+              ref={scrollRef}
+              className='flex gap-3 overflow-x-auto pb-1 thin-scrollbar scroll-smooth'
+            >
               {conversionFormulas.slice(0, 10).map((formula) => (
                 <span
                   onClick={() => setQuery(formula.title)}
@@ -61,12 +113,29 @@ export default function ConversionFormulasPage() {
                 </span>
               ))}
             </div>
+            {showLeft && (
+              <button
+                onClick={() => scroll(-200)}
+                className='absolute left-0 top-1/2 -translate-y-1/2 px-2 py-2 bg-white shadow rounded-full z-10 hover:bg-stone-200 cursor-pointer'
+              >
+                <FaChevronLeft className='text-stone-700' />
+              </button>
+            )}
+
+            {showRight && (
+              <button
+                onClick={() => scroll(200)}
+                className='absolute right-0 top-1/2 -translate-y-1/2 px-2 py-2 bg-white shadow rounded-full z-10 hover:bg-stone-200 cursor-pointer'
+              >
+                <FaChevronRight className='text-stone-700' />
+              </button>
+            )}
           </div>
         )}
 
         <div className='flex flex-col lg:flex-row gap-8'>
           <div className='flex flex-col gap-4 flex-grow lg:w-4/5'>
-            {filteredFormulas.map((formula) => (
+            {visibleFormulas.map((formula) => (
               <div
                 key={formula.id}
                 className='flex flex-col gap-6 p-8 bg-stone-100 rounded shadow'
@@ -107,6 +176,15 @@ export default function ConversionFormulasPage() {
                 </div>
               </div>
             ))}
+
+            {visibleFormulas.length < filteredFormulas.length && (
+              <button
+                onClick={handleLoadMore}
+                className='cursor-pointer self-center mt-4 px-6 py-3 rounded-full bg-stone-700 text-stone-100 hover:bg-stone-800 transition'
+              >
+                Load More
+              </button>
+            )}
 
             {filteredFormulas.length === 0 && !showSuggestions && (
               <p className='text-stone-500'>No matching conversion found.</p>

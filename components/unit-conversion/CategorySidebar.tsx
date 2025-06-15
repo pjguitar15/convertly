@@ -4,16 +4,16 @@ import { useUnits } from '@/context/UnitContext'
 import { useRouter } from 'next/navigation'
 import { JSX } from 'react'
 import {
-  AiOutlineControl,
-  AiOutlineCrown,
-  AiOutlineExperiment,
-  AiOutlineKubernetes,
-  AiOutlinePython,
-  AiOutlineSignature,
-  AiOutlineSlack,
-  AiOutlineTaobao,
-  AiOutlineDeploymentUnit,
+  AiOutlineColumnWidth, // Length
+  AiOutlineHeatMap, // Temperature
+  AiOutlineClockCircle, // Time
+  AiOutlineBorder, // Area
+  AiOutlineContainer, // Volume
+  AiOutlineDashboard, // Speed
+  AiOutlineThunderbolt, // Energy
+  AiOutlineDeploymentUnit, // Fallback
 } from 'react-icons/ai'
+import { MdScale } from 'react-icons/md' // Mass
 
 export default function CategorySidebar() {
   const { category, setCategory } = useUnits()
@@ -31,14 +31,14 @@ export default function CategorySidebar() {
   ]
 
   const categoryIcons: Record<string, JSX.Element> = {
-    length: <AiOutlineControl className='text-lg' />,
-    mass: <AiOutlineCrown className='text-lg' />,
-    temperature: <AiOutlineExperiment className='text-lg' />,
-    time: <AiOutlineKubernetes className='text-lg' />,
-    area: <AiOutlinePython className='text-lg' />,
-    volume: <AiOutlineSignature className='text-lg' />,
-    speed: <AiOutlineSlack className='text-lg' />,
-    energy: <AiOutlineTaobao className='text-lg' />,
+    length: <AiOutlineColumnWidth className='text-lg' />,
+    mass: <MdScale className='text-lg' />,
+    temperature: <AiOutlineHeatMap className='text-lg' />,
+    time: <AiOutlineClockCircle className='text-lg' />,
+    area: <AiOutlineBorder className='text-lg' />,
+    volume: <AiOutlineContainer className='text-lg' />,
+    speed: <AiOutlineDashboard className='text-lg' />,
+    energy: <AiOutlineThunderbolt className='text-lg' />,
   }
 
   const handleLinkClick = (cat: string) => {

@@ -8,16 +8,16 @@ export const navbarLinks = [
     path: '/convert/currency',
   },
   {
-    name: 'Conversion Formulas',
-    path: '/conversion-formulas',
-  },
-  {
     name: 'Percentage Calculator',
     path: '/percentage-calculator',
   },
   {
     name: 'BMI Calculator',
     path: '/bmi-calculator',
+  },
+  {
+    name: 'Conversion Formulas',
+    path: '/conversion-formulas',
   },
   {
     name: 'Support',

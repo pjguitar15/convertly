@@ -2,16 +2,16 @@
 
 import React from 'react'
 import {
-  AiOutlineControl,
-  AiOutlineCrown,
-  AiOutlineExperiment,
-  AiOutlineKubernetes,
-  AiOutlinePython,
-  AiOutlineSignature,
-  AiOutlineSlack,
-  AiOutlineTaobao,
-  AiOutlineDeploymentUnit,
+  AiOutlineColumnWidth, // Length
+  AiOutlineHeatMap, // Temperature
+  AiOutlineClockCircle, // Time
+  AiOutlineBorder, // Area
+  AiOutlineContainer, // Volume
+  AiOutlineDashboard, // Speed
+  AiOutlineThunderbolt, // Energy
+  AiOutlineDeploymentUnit, // Fallback
 } from 'react-icons/ai'
+import { MdScale } from 'react-icons/md'
 
 interface Props {
   category: string
@@ -29,18 +29,24 @@ const categoryTitles: Record<string, string> = {
 }
 
 const categoryIcons: Record<string, React.ReactNode> = {
-  length: <AiOutlineControl className='text-5xl lg:text-4xl text-stone-700' />,
-  mass: <AiOutlineCrown className='text-5xl lg:text-4xl text-stone-700' />,
+  length: (
+    <AiOutlineColumnWidth className='text-5xl lg:text-4xl text-stone-700' />
+  ),
+  mass: <MdScale className='text-5xl lg:text-4xl text-stone-700' />,
   temperature: (
-    <AiOutlineExperiment className='text-5xl lg:text-4xl text-stone-700' />
+    <AiOutlineHeatMap className='text-5xl lg:text-4xl text-stone-700' />
   ),
-  time: <AiOutlineKubernetes className='text-5xl lg:text-4xl text-stone-700' />,
-  area: <AiOutlinePython className='text-5xl lg:text-4xl text-stone-700' />,
+  time: (
+    <AiOutlineClockCircle className='text-5xl lg:text-4xl text-stone-700' />
+  ),
+  area: <AiOutlineBorder className='text-5xl lg:text-4xl text-stone-700' />,
   volume: (
-    <AiOutlineSignature className='text-5xl lg:text-4xl text-stone-700' />
+    <AiOutlineContainer className='text-5xl lg:text-4xl text-stone-700' />
   ),
-  speed: <AiOutlineSlack className='text-5xl lg:text-4xl text-stone-700' />,
-  energy: <AiOutlineTaobao className='text-5xl lg:text-4xl text-stone-700' />,
+  speed: <AiOutlineDashboard className='text-5xl lg:text-4xl text-stone-700' />,
+  energy: (
+    <AiOutlineThunderbolt className='text-5xl lg:text-4xl text-stone-700' />
+  ),
 }
 
 const CategoryTitle: React.FC<Props> = ({ category }) => {

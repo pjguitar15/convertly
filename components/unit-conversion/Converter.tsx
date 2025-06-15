@@ -56,7 +56,7 @@ export default function Converter() {
         <p className='w-full p-3 rounded text-sm text-stone-400'>
           <strong>Conversion:</strong> 1 {formatUnit(fromUnit, 1)} ={' '}
           {convert(category, fromUnit, toUnit, 1)}{' '}
-          {formatUnit(toUnit, convert(category, fromUnit, toUnit, 1))}
+        {formatUnit(toUnit, convert(category, fromUnit, toUnit, 1))}
         </p>
       </div>
 
