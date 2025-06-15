@@ -12,7 +12,25 @@ export default async function VisitorsPage() {
     const client = await clientPromise
     const db = client.db(process.env.NEXT_PUBLIC_MONGO_DB_NAME)
 
-    const raw = await db.collection('visitors').find().toArray()
+    // ✅ Get only the LATEST record per distinct IP
+    const raw = await db
+      .collection('visitors')
+      .aggregate([
+        // Sort newest first
+        { $sort: { lastVisited: -1 } },
+        // Group by IP, take the first doc
+        {
+          $group: {
+            _id: '$ip',
+            doc: { $first: '$$ROOT' },
+          },
+        },
+        // Replace root to keep the doc shape
+        { $replaceRoot: { newRoot: '$doc' } },
+        // Optional: sort again if you want
+        { $sort: { lastVisited: -1 } },
+      ])
+      .toArray()
 
     visitors = raw.map((doc) => ({
       _id: doc._id.toString(),

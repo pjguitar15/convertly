@@ -14,8 +14,8 @@ export default function Testimonials() {
     },
     {
       quote:
-        '“Intuitive, fast, and reliable. A must-have tool for professionals and everyday use alike.”',
-      author: '— Priya L., Engineer',
+        '“Convert Like A Pro helps me handle quick unit and currency conversions without distractions. It’s clean, reliable, and just works.”',
+      author: '— Philson S., Sound Engineer',
     },
   ]
 

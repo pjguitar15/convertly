@@ -31,7 +31,9 @@ export default function FeedbackResponses({
   return (
     <div className='max-w-5xl mx-auto'>
       <div className='flex items-center justify-between mb-4'>
-        <h1 className='text-3xl font-bold text-stone-900'>{title}</h1>
+        <h1 className='text-3xl font-bold text-stone-900'>
+          {title} <span className='font-medium'>({sortedData.length})</span>
+        </h1>
         <button
           onClick={toggleSortOrder}
           className='px-4 py-2 text-sm text-stone-900'
