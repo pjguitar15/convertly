@@ -70,12 +70,12 @@ export default function ConversionFormulasPage() {
               className='flex flex-col gap-6 p-8 bg-stone-100 rounded shadow'
             >
               {/* Left (Formula Info) */}
-              <div className='lg:w-auto'>
+              <div className='lg:w-auto flex flex-col'>
                 <h3 className='text-lg font-semibold text-stone-800 mb-3 capitalize'>
                   {formula.title}
                 </h3>
-                <p className='text-stone-600'>
-                  Formula:{' '}
+                <p className='text-stone-600 flex flex-col gap-2 md:items-center md:flex-row self-start'>
+                  <span className='text-sm'>Formula: </span>
                   <span className='bg-stone-900 text-stone-100 px-3 py-2 rounded text-sm font-semibold'>
                     {formula.formula}
                   </span>
