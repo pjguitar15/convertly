@@ -2,11 +2,11 @@ import './globals.css'
 import { Inter } from 'next/font/google'
 import { UnitProvider } from '@/context/UnitContext'
 import type { Metadata } from 'next'
-import Footer from '@/components/Footer'
 import AdSense from '@/components/Adsense'
 import { Toaster } from 'react-hot-toast'
 import { TrackVisitor } from '@/components/TrackVisitor'
 import ClientNavbarWrapper from '@/components/ClientNavbarWrapper'
+import ClientFooterWrapper from '@/components/ClientFooterWrapper'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -66,7 +66,7 @@ export default function RootLayout({
             <ClientNavbarWrapper />
             <div className='bg-stone-200'>{children}</div>
             <Toaster position='top-right' />
-            <Footer />
+            <ClientFooterWrapper />
           </div>
         </UnitProvider>
       </body>

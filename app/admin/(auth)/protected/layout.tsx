@@ -4,6 +4,14 @@ import Link from 'next/link'
 import { useEffect, useState } from 'react'
 import { useRouter, usePathname } from 'next/navigation'
 
+// ✅ Import icons
+import {
+  AiOutlineMail,
+  AiOutlineComment,
+  AiOutlineUser,
+  AiOutlineLogout,
+} from 'react-icons/ai'
+
 export default function AdminLayout({
   children,
 }: {
@@ -30,45 +38,59 @@ export default function AdminLayout({
     router.push('/admin/login')
   }
 
+  // ✅ Add icons to links
   const links = [
-    { href: '/admin/protected/contact-responses', label: 'Contact Responses' },
-    { href: '/admin/protected/feedbacks', label: 'Feedbacks' },
-    { href: '/admin/protected/visitors', label: 'Visitors' },
+    {
+      href: '/admin/protected/contact-responses',
+      label: 'Contact Responses',
+      icon: <AiOutlineMail className='text-lg' />,
+    },
+    {
+      href: '/admin/protected/feedbacks',
+      label: 'Feedbacks',
+      icon: <AiOutlineComment className='text-lg' />,
+    },
+    {
+      href: '/admin/protected/visitors',
+      label: 'Visitors',
+      icon: <AiOutlineUser className='text-lg' />,
+    },
   ]
 
   if (!authorized) {
-    // Block sidebar & main while checking auth
-    return null // or return <div>Loading...</div>
+    return null // Or <div>Loading...</div>
   }
 
   return (
     <div className='flex min-h-screen'>
-      <aside className='w-64 bg-stone-800 text-white p-6 flex flex-col gap-4'>
+      <aside className='fixed top-0 left-0 h-full w-64 bg-stone-800 text-white p-6 flex flex-col gap-4'>
         <h2 className='text-xl font-bold mb-6'>Admin Panel</h2>
 
         {links.map((link) => (
           <Link
             key={link.href}
             href={link.href}
-            className={`px-2 py-1 rounded transition ${
+            className={`flex items-center gap-2 px-2 py-1 rounded transition ${
               pathname === link.href
                 ? 'bg-stone-700 font-semibold'
                 : 'hover:underline'
             }`}
           >
-            {link.label}
+            {link.icon}
+            <span>{link.label}</span>
           </Link>
         ))}
 
         <button
           onClick={handleLogout}
-          className='mt-auto text-red-300 hover:underline'
+          className='mt-auto flex items-center gap-2 text-red-300 hover:underline'
         >
+          <AiOutlineLogout className='text-lg' />
           Logout
         </button>
       </aside>
 
-      <main className='flex-1 p-8 bg-stone-200'>{children}</main>
+      <main className='flex-1 p-8 bg-stone-200 ml-64'>{children}</main>
     </div>
   )
 }
