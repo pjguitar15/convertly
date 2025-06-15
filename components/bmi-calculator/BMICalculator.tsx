@@ -5,6 +5,7 @@ import { AiOutlineHeart } from 'react-icons/ai'
 import BMIForm from './BMIForm'
 import BMIStatus from './BMIStatus'
 import BMIExtraInfo from './BMIExtraInfo'
+import PageTransition from '../PageTransition'
 
 export default function BMICalculator() {
   // ✅ Use string for input-friendly handling
@@ -95,35 +96,37 @@ export default function BMICalculator() {
 
   return (
     <main className='bg-white border border-stone-100 shadow rounded-xl p-8 md:p-14 mx-auto w-full max-w-3xl'>
-      <h1 className='text-2xl lg:text-3xl font-bold mb-8 text-center flex justify-center items-center gap-2 text-stone-900'>
-        <AiOutlineHeart className='text-5xl md:text-3xl' />
-        BMI Calculator
-      </h1>
+      <PageTransition>
+        <h1 className='text-2xl lg:text-3xl font-bold mb-8 text-center flex justify-center items-center gap-2 text-stone-900'>
+          <AiOutlineHeart className='text-5xl md:text-3xl' />
+          BMI Calculator
+        </h1>
 
-      <div className='flex flex-col gap-4'>
-        <BMIForm
-          weight={weight}
-          height={height}
-          age={age}
-          gender={gender}
-          setWeight={setWeight}
-          setHeight={setHeight}
-          setAge={setAge}
-          setGender={setGender}
-        />
-        <BMIStatus
-          status={status}
-          bmi={bmi}
-          category={category}
-          emoji={emoji}
-        />
-        {status === 'done' && bmi !== null && (
-          <BMIExtraInfo
-            normalWeightRange={normalWeightRange}
-            calories={calories}
+        <div className='flex flex-col gap-4'>
+          <BMIForm
+            weight={weight}
+            height={height}
+            age={age}
+            gender={gender}
+            setWeight={setWeight}
+            setHeight={setHeight}
+            setAge={setAge}
+            setGender={setGender}
           />
-        )}
-      </div>
+          <BMIStatus
+            status={status}
+            bmi={bmi}
+            category={category}
+            emoji={emoji}
+          />
+          {status === 'done' && bmi !== null && (
+            <BMIExtraInfo
+              normalWeightRange={normalWeightRange}
+              calories={calories}
+            />
+          )}
+        </div>
+      </PageTransition>
     </main>
   )
 }

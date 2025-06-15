@@ -1,6 +1,6 @@
 import AdBanner from '@/components/AdBanner'
 import CenterItems from '@/components/CenterItems'
-import MainCurrencyPage from '@/components/MainCurrencyPage'
+import MainCurrencyPage from '@/components/currency/MainCurrencyPage'
 import PageInfo from '@/components/PageInfo'
 import React from 'react'
 
