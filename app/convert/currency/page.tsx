@@ -60,7 +60,7 @@ export async function generateMetadata() {
       title: 'Currency Converter – Convert Money Instantly',
       description:
         'Fast and accurate currency conversions for over 150 currencies. Get real-time exchange rates and convert now.',
-      url: 'https://convertlikeapro.com/convert-currency',
+      url: 'https://convertlikeapro.com/convert/currency',
       siteName: 'Convert Like A Pro',
       type: 'website',
     },

@@ -15,7 +15,7 @@ export default function HowItWorks() {
       title: 'Currency Converter',
       desc: 'Instantly convert currencies with live exchange rates for accurate conversions every time.',
       icon: <FaMoneyBillWave className='text-6xl text-stone-700' />,
-      link: '/convert-currency',
+      link: '/convert/currency',
     },
     {
       title: 'Percentage Calculator',

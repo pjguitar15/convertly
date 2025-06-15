@@ -21,7 +21,7 @@ const conversionFormulasPageInfo = {
         },
         {
           label: 'Currency converter',
-          href: '/convert-currency',
+          href: '/convert/currency',
           description: ' to handle global currency exchange with ease.',
         },
         {
