@@ -23,7 +23,7 @@ export default function Footer() {
   ]
 
   return (
-    <footer className='bg-stone-200 text-stone-700 text-sm mt-20'>
+    <footer className='bg-stone-100 text-stone-700 text-sm'>
       <div className='max-w-7xl mx-auto px-6 py-10 grid grid-cols-1 md:grid-cols-3 gap-8'>
         {/* Logo & Description */}
         <div>

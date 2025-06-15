@@ -25,7 +25,7 @@ export default function Modal({ children, onClose }: Props) {
           animate={{ opacity: 1, scale: 1 }}
           exit={{ opacity: 0, scale: 0.95 }}
           transition={{ duration: 0.2, ease: 'easeOut' }}
-          className='bg-white rounded-lg relative shadow-lg w-full max-w-fit'
+          className='bg-white rounded-lg relative shadow-lg w-full lg:max-w-fit'
         >
           <button
             onClick={onClose}
