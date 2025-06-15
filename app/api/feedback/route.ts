@@ -2,11 +2,8 @@ import { NextResponse } from 'next/server'
 import clientPromise from '@/lib/mongodb'
 
 export async function POST(req: Request) {
-  console.log('[API: feedback] Incoming request')
-
   try {
     const body = await req.json()
-    console.log('[API: feedback] Parsed JSON:', body)
 
     const { name, email, message } = body
 
@@ -14,21 +11,13 @@ export async function POST(req: Request) {
     if (!email) throw new Error('Missing email in request body')
     if (!message) throw new Error('Missing message in request body')
 
-    console.log('[API: feedback] All required fields are present')
-
-    console.log('[API: feedback] Connecting to MongoDB...')
     const client = await clientPromise
 
-    console.log('[API: feedback] Connected to MongoDB')
-
     const dbName = process.env.NEXT_PUBLIC_MONGO_DB_NAME
-    if (!dbName) throw new Error('MONGO_DB_NAME is not defined in env')
 
-    console.log('[API: feedback] Using database:', dbName)
     const db = client.db(dbName)
 
     const collection = db.collection('feedback')
-    console.log('[API: feedback] Using collection: feedback')
 
     const insertResult = await collection.insertOne({
       name,
@@ -36,8 +25,6 @@ export async function POST(req: Request) {
       message,
       createdAt: new Date(),
     })
-
-    console.log('[API: feedback] Insert result:', insertResult)
 
     return NextResponse.json({
       success: true,

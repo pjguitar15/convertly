@@ -1,24 +1,12 @@
 'use client'
 
 import Image from 'next/image'
-import React, { useEffect } from 'react'
+import React from 'react'
 import HeaderImage from '@/public/header.png'
 import Link from 'next/link'
 import { AiOutlineArrowRight } from 'react-icons/ai'
 
 const Hero = () => {
-  const envs = {
-    ADSENSE_PID: process.env.NEXT_PUBLIC_ADSENSE_PID,
-    MONGO_DB_STRING: process.env.NEXT_PUBLIC_MONGO_DB_STRING,
-    MONGO_DB_NAME: process.env.NEXT_PUBLIC_MONGO_DB_NAME,
-    NODE_ENV: process.env.NEXT_PUBLIC_NODE_ENV,
-    ADMIN_USER: process.env.NEXT_PUBLIC_ADMIN_USER,
-    ADMIN_PASS: process.env.NEXT_PUBLIC_ADMIN_PASS,
-  }
-  useEffect(() => {
-    console.log('Environment Variables:')
-    console.log('Check all ENVs', envs)
-  }, [])
   return (
     <section className='relative text-stone-950 overflow-hidden w-full container mx-auto flex flex-col py-36'>
       <div className='relative z-10 mx-auto grid grid-cols-1 lg:grid-cols-2 items-center'>
@@ -58,12 +46,6 @@ const Hero = () => {
           />
         </div>
       </div>
-      Test
-      <pre
-        style={{ background: '#f5f5f5', padding: '1rem', borderRadius: '8px' }}
-      >
-        <code>{JSON.stringify(envs, null, 2)}</code>
-      </pre>
     </section>
   )
 }
