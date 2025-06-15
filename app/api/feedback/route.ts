@@ -21,7 +21,7 @@ export async function POST(req: Request) {
 
     console.log('[API: feedback] Connected to MongoDB')
 
-    const dbName = process.env.MONGO_DB_NAME
+    const dbName = process.env.NEXT_PUBLIC_MONGO_DB_NAME
     if (!dbName) throw new Error('MONGO_DB_NAME is not defined in env')
 
     console.log('[API: feedback] Using database:', dbName)
