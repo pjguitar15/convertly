@@ -4,7 +4,7 @@ import { useUnits } from '@/context/UnitContext'
 import { convert } from '@/lib/conversion'
 import UnitInput from './UnitInput'
 import Link from 'next/link'
-import { formatUnit } from '@/types/formatUnit'
+import { formatUnit } from '@/helpers/formatUnit'
 
 export default function Converter() {
   const {
