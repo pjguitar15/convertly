@@ -45,3 +45,13 @@ body {
   background-color: #d6d3d1; /* Tailwind's stone-300 */
   border-radius: 9999px;
 }
+
+/* Hide horizontal scrollbar cross-browser */
+.hide-scrollbar {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE 10+ */
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
+}
